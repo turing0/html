@@ -1,0 +1,38 @@
+/*
+ * The Typekit service used to deliver this font or fonts for use on websites
+ * is provided by Adobe and is subject to these Terms of Use
+ * http://www.adobe.com/products/eulas/tou_typekit. For font license
+ * information, see the list below.
+ *
+ * neue-haas-grotesk-display:
+ *   - http://typekit.com/eulas/00000000000000003b9b2046
+ * neue-haas-grotesk-text:
+ *   - http://typekit.com/eulas/00000000000000003b9b2050
+ *   - http://typekit.com/eulas/00000000000000003b9b2052
+ *
+ * © 2009-2019 Adobe Systems Incorporated. All Rights Reserved.
+ */
+/*{"last_published":"2019-04-29 11:02:34 UTC"}*/
+
+@import url("../img/p.css");
+
+@font-face {
+font-family:"neue-haas-grotesk-display";
+src:url("../img/96e3e807e4fb7b4cb8d8806271aa8061.png") format("woff2"),url("../img/c5d2c41bb911ef5b6f933f1cd9df7d6f.png") format("woff"),url("../img/d213bf2a56e7e727018049b8f643bd80.png") format("opentype");
+font-display:auto;font-style:normal;font-weight:400;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-text";
+src:url("../img/67b7ec4b87a1e7cc993c8d06e6f52147.png") format("woff2"),url("../img/c0e4a2940f8f2e962a07498f7104e8e1.png") format("woff"),url("../img/4e40faf4df9e3e3f12b2344133cddaff.png") format("opentype");
+font-display:auto;font-style:normal;font-weight:400;
+}
+
+@font-face {
+font-family:"neue-haas-grotesk-text";
+src:url("../img/5a4a9ad5ca2f87c20112f5fa09591cc3.png") format("woff2"),url("../img/7e6cf04ff584c8d4c55f9daa8cd61e47.png") format("woff"),url("../img/0679090bb44c2b454fa2d149450140d8.png") format("opentype");
+font-display:auto;font-style:normal;font-weight:500;
+}
+
+.tk-neue-haas-grotesk-display { font-family: "neue-haas-grotesk-display",sans-serif; }
+.tk-neue-haas-grotesk-text { font-family: "neue-haas-grotesk-text",sans-serif; }

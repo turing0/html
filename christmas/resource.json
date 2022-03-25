@@ -1,0 +1,114 @@
+{
+    "header": [
+        " *   ",
+        " *   文件描述：本文件为网页资源信息",
+        " *   success字段为下载保存成功的资源;failures字段则为下载保存失败的资源URL",
+        " *   success字段为标准树结构，每一层资源父子关系、URL和保存路径清晰明了",
+        " *   本文件仅为记录检测到的网页资源以便于调试，非专业人员可将本文件删除",
+        " *   详细介绍请参考: https://bazhan.me/faq",
+        " *   "
+    ],
+    "success": [
+        {
+            "url": "https://sdm.btmcheck.com/",
+            "path": "index.html",
+            "children": [
+                {
+                    "url": "https://liangchan.apk4399.com/ruanjiandi/d/file/collect/android/2019/12-08/5decf3ec1006a79525.jpg",
+                    "path": "images/5decf3ec1006a79525.jpeg"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/chihuolingquan.jpg",
+                    "path": "images/chihuolingquan.jpeg"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/act-done-happy.png",
+                    "path": "images/act-done-happy.png"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/hat0.png",
+                    "path": "images/hat0.png"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/hat1.png",
+                    "path": "images/hat1.png"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/hat2.png",
+                    "path": "images/hat2.png"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/hat3.png",
+                    "path": "images/hat3.png"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/hat4.png",
+                    "path": "images/hat4.png"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/hat5.png",
+                    "path": "images/hat5.png"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/hat6.png",
+                    "path": "images/hat6.png"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/hat7.png",
+                    "path": "images/hat7.png"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/hat8.png",
+                    "path": "images/hat8.png"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/hat9.png",
+                    "path": "images/hat9.png"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/hat10.png",
+                    "path": "images/hat10.png"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/hat11.png",
+                    "path": "images/hat11.png"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/hat12.png",
+                    "path": "images/hat12.png"
+                },
+                {
+                    "url": "https://sdm.btmcheck.com/index_files/r-nationaldayhead.872d8e4c.css",
+                    "path": "css/r-nationaldayhead.872d8e4c.css",
+                    "children": [
+                        {
+                            "url": "https://sdm.btmcheck.com/index_files/20190829-bg.png",
+                            "path": "images/20190829-bg.png"
+                        },
+                        {
+                            "url": "https://sdm.btmcheck.com/index_files/20190906-logo2.png",
+                            "path": "images/20190906-logo2.png"
+                        },
+                        {
+                            "url": "https://sdm.btmcheck.com/index_files/20190829-btn.png",
+                            "path": "images/20190829-btn.png"
+                        },
+                        {
+                            "url": "https://sdm.btmcheck.com/index_files/btn1.png",
+                            "path": "images/btn1.png"
+                        },
+                        {
+                            "url": "https://sdm.btmcheck.com/index_files/save-btn.png",
+                            "path": "images/save-btn.png"
+                        },
+                        {
+                            "url": "https://sdm.btmcheck.com/index_files/20190829-longpress.svg",
+                            "path": "images/20190829-longpress.svg"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "failures": []
+}

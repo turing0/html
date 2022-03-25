@@ -1,0 +1,648 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0">
+		<title>译库网页翻译插件</title>
+
+		<style type="text/css">
+			a {
+				cursor: pointer;
+			}
+			
+			body,
+			div,
+			ul,
+			li,
+			p,
+			a,
+			span,
+			b,
+			strong,
+			em,
+			i,
+			img {
+				margin: 0px;
+				padding: 0px;
+				font: 12px Microsoft Yahei, "微软雅黑", Arial, Helvetica, sans-serif;
+				color: #666666;
+			}
+			
+			img {
+				border: 0px;
+			}
+			
+			.content {
+				height: 26px;
+				line-height: 26px;
+				background-color: #26c57a;
+				color: #fff;
+				border-radius: 4px;
+				margin-left: 20px;
+				cursor: pointer;
+			}
+			
+			.content:hover {
+				background-color: #3edd93;
+			}
+			
+			#percent_id {
+				color: rgb(37, 196, 122);
+			}
+			
+			.content,
+			.content2 {
+				display: inline-block
+			}
+			/*.content2 {margin-right:20px}*/
+			
+			ul,
+			li {
+				list-style: none;
+			}
+			
+			#op_select_word {
+				display: inline-block;
+				margin-left: 20px;
+				margin-top: -4px;
+				height: 100%;
+				line-height: 37px;
+			}
+			
+			#op_show_dual_language {
+				display: inline-block;
+				margin-left: 20px;
+				margin-top: -4px;
+				height: 100%;
+				line-height: 37px;
+			}
+			
+			#show_source_button {
+				width: 71px;
+				text-align: center;
+				    height: 30px;
+				    text-align: center;
+				    border-radius: 5px;
+				    margin-left: 20px;
+				    transform: translateY(1px);
+				    line-height: 30px;
+				        background: #3db979;
+    color: #fff;
+    cursor: pointer;
+			}
+			
+			#show_button {
+				    width: 60px;
+				    height: 30px;
+				    text-align: center;
+				    border-radius: 5px;
+				    margin-left: 20px;
+				    transform: translateY(1px);
+				    line-height: 30px;
+			}
+			
+			a,
+			a:hover {
+				text-decoration: none;
+			}
+			a:link, a:visited,a:hover,a:active{
+				border-bottom: none!important;
+			}
+			.clearfix:after {
+				display: block;
+				clear: both;
+				content: "";
+				visibility: hidden;
+				height: 0
+			}
+			
+			.clearfix {
+				zoom: 1
+			}
+			
+			#sour_spn {
+				padding-right: 6px;
+				padding-left: 20px;
+			}
+			
+			.w1000 {
+				width: 100%;
+				margin: 0px auto;
+				clear: both;
+				float: left;
+				line-height: 40px;
+				height: 100%;
+				box-sizing: border-box;
+				border-bottom: 1px solid #26c57a;
+			}
+			
+			#logo_id img {
+				margin-top: -3px;
+				width: 120px;
+			}
+			
+			.fl {
+				float: left;
+			}
+			
+			.strans {
+				height: 50px;
+				padding-top:5px;
+				background: #fff;
+			}
+			
+			.s_warp {
+				background: #fff;
+				width: 100%;
+				height: 50px;
+				color: #666666;
+				position: fixed;
+			}
+			
+			.s_warp .w1000 {
+				/*position: relative;*/
+			}
+			
+			.s_warp .logo {
+				/*position: absolute;
+        top: 3px;
+        left: 0px;*/
+				margin-top: 9px;
+				float: left;
+			}
+			
+			.s_warp .s_ltxt {
+				position: absolute;
+				top: 13px;
+				left: 29px;
+			}
+			
+			.s_warp .s_ltxt a {
+				display: block;
+				line-height: 23px;
+				font-size: 14px;
+				color: #ffffff;
+			}
+			
+			.s_warp .s_speed {
+				position: absolute;
+				top: 11px;
+				left: 200px;
+			}
+			
+			.s_warp .s_speed span {
+				display: block;
+				line-height: 27px;
+				margin-right: 6px;
+			}
+			
+			.s_warp .s_speed .ss_bar {
+				background: url(images/sbar0.png) repeat-x 0 center;
+				width: 345px;
+				height: 27px;
+			}
+			
+			.s_warp .s_speed .ss_bar .ssb_been {
+				background: url(images/sbar1.png) repeat-x 0 center;
+				width: 45px;
+				height: 27px;
+				text-align: right;
+			}
+			
+			.s_warp .s_lang {
+				/*position: absolute;
+        top: 6px;
+        padding-left: 397px;*/
+				padding-top: 6px;
+				float: left;
+			}
+			
+			#msgContent {
+				padding-left: 20px;
+			}
+			
+			.content {
+				margin-left: 0;
+			}
+			
+			.s_lang .sl_source {
+				padding-right: 12px;
+			}
+			/*.sl_source {
+       padding-left:80px
+    }*/
+			
+			.s_lang .sl_source span {
+				height: 40px;
+				display: inline-block;
+			}
+			
+			.s_warp .s_lang select {
+				height: 30px;
+				width: 60px;
+				line-height: 20px;
+				border: 1px solid #26c57a;
+				border-radius: 2px;
+				font-size: 12px;
+				border-radius: 6px;
+				outline: none;
+				appearance: none;
+				-moz-appearance: none;
+				-webkit-appearance: none;
+				-ms-appearance: none;
+				padding-left: 12px;
+				padding-right: 12px;
+				background: url(images/select_jt.jpg) no-repeat scroll 40px center;
+			}
+			
+			#tar_spn {
+				margin-right: 5px;
+			}
+			
+			#show_source_button {
+				margin-left: 20px;
+			}
+			
+			.s_lang .sl_elang {
+				padding: 7px;
+				cursor: pointer;
+			}
+			
+			.s_lang .sl_elang img {
+				float: left;
+			}
+			
+			.br {
+				border-radius: 50%;
+			}
+			#person_trans_id img,#doc_trans_id img{
+				height:15px;
+			}
+			#person_trans_id,#doc_trans_id{
+				color:#000;
+				font-weight: 700;
+			}
+			.s_warp .s_link {
+				/*position: absolute;
+        right: 0px;
+        height:40px*/
+				float: right;
+				margin-right: 44px;
+			}
+			
+			.s_link img {
+				vertical-align: middle;
+			}
+			
+			.s_warp .s_link a {
+				display: inline-block;
+				height: 40px;
+				line-height: 40px;
+				margin-left: 17px;
+				color: #999999;
+			}
+			
+			#person_trans_id {
+				margin-left: 16px;
+			}
+			
+			.sl_duba {
+				padding: 0 30px;
+				background: url("images/duba.png") no-repeat 0 center;
+			}
+			
+			.s_link .closePlu {
+				width: 12px;
+				height: 12px;
+				position: absolute;
+				right: 30px;
+				top: 5px;
+				background: url("images/close.png") no-repeat;
+			}
+			
+			.s_link .closePlu:hover {
+				background: url("images/close.png") no-repeat;
+			}
+			#translating_id {
+				margin-left:15px;
+			}
+			#translating_id img {
+				width: 20px;
+				height: 4px;
+			}
+			
+			.s_close {
+				/* float: right; */
+				right:5px;
+				position: absolute;
+				top: -3px;
+			}
+			
+			.s_close a {
+				display: block;
+				width: 13px;
+				height: 13px;
+				cursor: pointer;
+				padding: 5px;
+			}
+			
+			#closePlu {
+				background: url("images/close.svg") no-repeat center center;
+				background-size: 13px 13px;
+				margin-right: -10px;
+			}
+			
+			#minimize {
+				background: url(images/narrow.svg) no-repeat center center;
+				background-size: 13px 13px;
+			}
+			
+			.stransfixed {
+				position: fixed;
+				right: 0px;
+				top: 200px;
+				z-index: 9999999;
+			}
+			
+			.stransfixed a {
+				display: block;
+				background: #0093d5 url(images/logofix31.png) no-repeat 11px center;
+				width: 40px;
+				height: 40px;
+				border-radius: 27px;
+				margin-right: 16px;
+			}
+			
+			.stransfixed a span {
+				display: none;
+				padding: 22px 10px 0px 58px;
+				font-size: 14px;
+				color: #ffffff;
+			}
+			
+			.stransfixed a:hover {
+				background-position: 20px center;
+				border-radius: 27px 0 0 27px;
+				width: auto;
+				margin-right: 0px;
+			}
+			
+			.stransfixed a:hover span {
+				display: block;
+			}
+			
+			#logo_id {
+				margin-left: 15px;
+			}
+			/* #minimize {
+        position: absolute;
+        background: url("images/minimize.jpg") no-repeat center center;
+        height: 40px;
+        line-height: 40px;
+        width: 36px;
+        cursor: pointer;
+    }*/
+			
+			#collect {
+				display: inline-block;
+				height: 23px;
+				width: 30px;
+				margin: 0 0 2px 18px;
+			}
+			
+			#collect img {
+				margin: auto;
+				cursor: pointer;
+				height: 23px;
+				width: 20px;
+				margin-bottom: 2px;
+			}
+			
+			#marklist {
+				display: inline-block;
+				height: 30px;
+				width: 30px;
+				margin-right: 30px;
+				margin-left: 0px;
+			}
+			
+			#marklist img {
+				height: 23px;
+				width: 23px;
+				position: relative;
+			}
+			
+			#bookmarks {
+				font-size: 12px;
+				width: 38px;
+				background: url('images/icon1.svg') no-repeat right center;
+				background-size: 8px 4px;
+				transform: translateY(2px);
+				color: #000000;
+			}
+			
+			#plugLogo {
+				height: 40px;
+				width: 40px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: url("images/logoplug.png") no-repeat center center;
+				z-index: 99999;
+				display: none;
+				background-size: cover
+			}
+			
+			#plugLogo img {
+				height: 100%;
+				width: 100%;
+			}
+			/*switch*/
+			
+			.bg_con {
+				width: 40px;
+				height: 22px;
+				display: inline-block;
+				margin-left: 7px;
+			}
+			
+			.switch {
+				display: none;
+			}
+			
+			label {
+				position: relative;
+				display: block;
+				padding: 1px;
+				border-radius: 24px;
+				height: 23px;
+				margin-bottom: 15px;
+				background-color: #eee;
+				cursor: pointer;
+				vertical-align: top;
+				-webkit-user-select: none;
+				margin-top: 5px;
+			}
+			
+			label:before {
+				content: '';
+				display: block;
+				border-radius: 21px;
+				height: 21px;
+				background-color: white;
+				-webkit-transform: scale(1, 1);
+				-webkit-transition: all 0.3s ease;
+			}
+			
+			label:after {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -12px;
+				margin-left: -11px;
+				width: 21px;
+				height: 21px;
+				border-radius: 21px;
+				background-color: white;
+				box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.08);
+				-webkit-transform: translateX(-9px);
+				-webkit-transition: all 0.3s ease;
+			}
+			
+			.switch:checked~label:after {
+				-webkit-transform: translateX(9px);
+			}
+			
+			.switch:checked~label:before {
+				background-color: #3db979;
+			}
+			
+			#remaining_words {
+				display: inline-block;
+				margin-left: 20px;
+				height: 100%;
+				cursor: pointer;
+			}
+			
+			#words-box {
+				position: relative;
+				display: inline-block;
+				cursor: pointer;
+				height: 100%;
+			}
+			
+			
+
+		</style>
+
+		<script type="text/javascript" src="content_data/jquery.js"></script>
+	</head>
+
+	<body>
+		<div class="stransfixed">
+			<a><span>译库网页翻译</span></a>
+		</div>
+		<div class="strans">
+			<div class="s_warp">
+				<div id="plugLogo"><img class="br" src="content_data/logoplug.png" title="显示译库功能"></div>
+				<!--<div id="minimize"></div>-->
+				<div class="w1000">
+					<div class="logo">
+						<a target="_blank" id="logo_id"><img src="content_data/logo.svg"></a>
+					</div>
+					<div id="msgContent" class="s_lang clearfix" style="">
+						<!-- 源语言 -->
+						<div class="fl sl_source">
+							<!-- 自动弹出时显示 当前 -->
+							<span id="sour_spn" style="display: inline-block;">当前为</span>
+							<!-- <span>当前&nbsp;&nbsp;&nbsp;</span> -->
+							<select id="sourceLang"><option value="en" selected="selected">英语</option><option value="zh">中文</option><option value="ja">日语</option><option value="ko">韩语</option><option value="cht">繁体中文</option><option value="th">泰语</option><option value="ru">俄语</option><option value="pt">葡语</option><option value="fr">法语</option><option value="de">德语</option><option value="es">西班牙语</option><option value="ar">阿拉伯语</option><option value="it">意大利语</option><option value="el">希腊语</option><option value="nl">荷兰语</option><option value="pl">波兰语</option><option value="bg">保加利亚语</option><option value="et">爱沙尼亚语</option><option value="da">丹麦语</option><option value="fi">芬兰语</option><option value="cz">捷克语</option><option value="ro">罗马尼亚语</option><option value="sl">斯洛文尼亚语</option><option value="sv">瑞典语</option><option value="hu">匈牙利语</option><option value="vi">越南语</option></select>
+						</div>
+						<!-- 目标语言 -->
+						<div class="fl sl_target">
+
+							<!-- 箭头标识 自动弹出时替换为：网页,是否翻译为-->
+							<span id="tar_spn">网页，是否翻译为</span>
+							<!-- <span id="tar_spn2">网页，是否翻译为&nbsp;&nbsp;&nbsp;</span> -->
+							<select id="targetLang"><option value="zh" selected="selected">中文</option><option value="en">英语</option><option value="ja">日语</option><option value="ko">韩语</option><option value="cht">繁体中文</option><option value="th">泰语</option><option value="ru">俄语</option><option value="pt">葡语</option><option value="fr">法语</option><option value="de">德语</option><option value="es">西班牙语</option><option value="ar">阿拉伯语</option><option value="it">意大利语</option><option value="el">希腊语</option><option value="nl">荷兰语</option><option value="pl">波兰语</option><option value="bg">保加利亚语</option><option value="et">爱沙尼亚语</option><option value="da">丹麦语</option><option value="fi">芬兰语</option><option value="cz">捷克语</option><option value="ro">罗马尼亚语</option><option value="sl">斯洛文尼亚语</option><option value="sv">瑞典语</option><option value="hu">匈牙利语</option><option value="vi">越南语</option></select>
+							<span></span>
+						</div>
+
+						<div id="trans_div" class="fl sl_btn">
+
+							<button id="no_trans_btn" style="display: none;">暂不翻译</button>
+
+						</div>
+						<div>
+
+						</div>
+						<div>
+
+						</div>
+					</div>
+
+					<!-- <a class="sl_duba" target="_blank" href="http://www.duba.com">金山毒霸</a> -->
+					<span style="color:#25c47a;display:none;" id="translating_id">
+                    翻译中
+                    <b id="percent_id">0</b>%&nbsp;&nbsp;
+                    <img src="content_data/5-121204194113-50.gif">
+                </span>
+					<span class="content2" id="show_source_button" style="display:none;">查看原文</span>
+					<span class="content" id="show_button">翻译</span>
+					<span class="content2">
+						<span id="op_select_word">划词</span>
+						<div class="bg_con">
+							<input id="checkbox_select_word" type="checkbox" class="switch">
+							<label for="checkbox_select_word"></label>
+						</div>
+					</span>
+					<span class="content2">
+						<span id="op_show_dual_language">双语</span>
+						<div class="bg_con">
+							<input id="dual_language_checkbox" type="checkbox" class="switch">
+							<label for="dual_language_checkbox"></label>
+						</div>
+					</span>
+					<div class="s_link" id="s_link_div_id" style="height: 1px;">
+						<a id="person_trans_id" target="_blank">
+							<img src="content_data/logo5.svg" alt="">
+							人工翻译
+						</a>
+						<span style="border-left:1px solid #e5e5e5;margin:0 0px 0 10px"> </span>
+						<a id="doc_trans_id" target="_blank">
+							<img src="content_data/logo6.svg" alt="">
+							文档翻译
+						</a>
+						<div id="remaining_words">
+							<span id="words-box">
+									<img src="content_data/icon12.svg" alt="" style="width:15px;height:15px">
+							</span>
+
+							<!--<span style="color:#b6b6b6">当前剩余</span>-->
+							<span style="padding: 3px 10px;background: #dffaec;border-radius: 18px;color: #3db979;    transform: translateY(2px);display: inline-block;" id="chars_left">剩余6822字符</span>
+
+						</div>
+						<span id="vipSpan" style="margin-left: 20px;    display: inline-block;transform: translateY(2px);">
+	                    <img src="content_data/vip_logo_bar.svg" alt="" style="vertical-align: baseline;width: 16px">
+	                    <a id="become_vip" style="margin-left: 2px">加入VIP</a>
+						<!--<a id="collect"><img src="images/collect.jpg" alt=""></a>
+						<a id="marklist" style=""><img src="images/collectlist.png" alt=""></a>-->
+						<!-- <span id="chars_left" style="margin-left: 20px">正在获取...</span>-->
+
+						</span>
+						<a id="bookmarks">书签</a>
+						<a id="more" style="width: 16px;height: 20px;"><img src="content_data/user.svg" alt=""></a>
+					</div>
+				</div>
+				<div class="s_close">
+					<a id="closePlu" class="closePlu"></a>
+					<a id="minimize"></a>
+				</div>
+			</div>
+		</div>
+		
+		
+		<script type="text/javascript" src="content_data/contenthtml_bind_event.js" charset="utf-8"></script>
+	
+
+</body></html>

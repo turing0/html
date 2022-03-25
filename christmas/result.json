@@ -1,0 +1,53 @@
+{
+    "header": [
+        " *   ",
+        " *   文件描述：本文件为请求参数，包括不限于网址、请求头、响应头、COOKIE、Referer、UserAgent",
+        " *   本文件仅为记录详细请求参数便于调试，非专业人员可将本文件删除",
+        " *   详细介绍请参考: https://bazhan.me/faq",
+        " *   "
+    ],
+    "directory": "sdm-btmcheck-com-o1b1fdj1",
+    "options": {
+        "url": "https://sdm.btmcheck.com/",
+        "index": "index.html",
+        "domain": "sdm.btmcheck.com",
+        "ipaddress": "115.28.131.166",
+        "filenameGenerator": "byType",
+        "request": {
+            "headers": {
+                "accept": "text/html,*/*",
+                "accept-language": "zh-CN,zh;q=0.9",
+                "accept-encoding": "gzip",
+                "cache-control": "no-cache",
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",
+                "x-scraper-website": "https://bazhan.me/"
+            }
+        },
+        "response": {
+            "statusCode": 200,
+            "headers": {
+                "server": "nginx",
+                "date": "Tue, 22 Dec 2020 06:26:49 GMT",
+                "content-type": "text/html",
+                "last-modified": "Tue, 22 Dec 2020 03:27:24 GMT",
+                "transfer-encoding": "chunked",
+                "connection": "close",
+                "vary": "Accept-Encoding",
+                "etag": "W/\"5fe1679c-2a9f3\"",
+                "strict-transport-security": "max-age=31536000",
+                "content-encoding": "gzip"
+            }
+        }
+    },
+    "user": {
+        "isWhite": false
+    },
+    "formatter": [
+        "saveOriginal"
+    ],
+    "time": {
+        "start": 1608618405109,
+        "end": 1608618421642,
+        "spend": "16.533s"
+    }
+}
