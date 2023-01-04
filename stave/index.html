@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<link rel="icon" type="image/jpg" href="./title.jpg">
+	<link rel="stylesheet" href="./css/style.css">
+	<script src="./javascript/jquery.min.js"></script>
+	<script src="./javascript/vexflow-min.js"></script>
+	<!-- <script src="./javascript/jquery.min.js"></script>
+	<script src="./javascript/vexflow-min.js"></script> -->
+	<script src="./javascript/main.js"></script>
+
+	<!-- 扩展 -->
+	<script src="./javascript/ion.rangeSlider.js"></script>
+	<link rel="stylesheet" href="./css/irs.css">
+	<script src="./javascript/range.js"></script>
+
+
+
+	<script src="https://tonejs.github.io/build/Tone.js"></script>
+    <script src="https://tonejs.github.io/examples/js/tone-ui.js"></script>
+    <!-- <script src="./javascript/t.js"></script> -->
+    <script src="https://tonejs.github.io/examples/js/components.js"></script>
+
+</head>
+
+<body>
+	<div class="blur" ></div>
+	<div>
+		<div class="card">
+		<div id="boo">加载中</div>
+		</div>
+		
+		
+	</div>
+	<div id="content" style="background-color:cornflowerblue;width: 1100px;margin-top: 10px;">
+        <!-- <tone-play-toggle></tone-play-toggle> -->
+        <!-- <tone-slider label="tempo" units="bpm" min="60" max="240" value="90"></tone-slider> -->
+        <!-- <tone-step-sequencer></tone-step-sequencer> -->
+    </div>
+
+    <div>
+			<div style="padding-top: 10px;">
+				训练音符数: <span id="tagNum">0</span>
+				<!-- <p>正确率: 0</p> -->
+			</div>
+			
+			<div >
+				<h3 id="RightPop" style="color: green;display: none;">正确 ✔</h3>
+				<h3 id="FailPop" style="color: red;display: none;">错误 ❌</h3>
+			</div>
+		</div>
+
+	<div class="card2" style="display: none;">
+		<div id="boo2"> Loading... </div>
+	</div>
+	<div class="question card">
+		加载中
+		<!-- <div class="item">
+			<div class="item-i">D/5<span>2</span></div>
+			<div class="item-i">B/4<span>7</span></div>
+			<div class="item-i">D/5<span>2</span></div>
+			<div class="item-i">C/5<span>1</span></div>
+		</div>
+		<div class="item">
+			<div class="item-i">B/5<span>7</span></div>
+			<div class="item-i">A/5<span>6</span></div>
+			<div class="item-i">F/5<span>4</span></div>
+			<div class="item-i">G/5<span>5</span></div>
+		</div>
+		<div class="item">
+			<div class="item-i">D/4<span>2</span></div>
+			<div class="item-i">G/5<span>5</span></div>
+			<div class="item-i">G/4<span>5</span></div>
+			<div class="item-i">F/5<span>4</span></div>
+		</div>
+		<div class="item">
+			<div class="item-i">B/5<span>7</span></div>
+			<div class="item-i">F/4<span>4</span></div>
+			<div class="item-i">G/4<span>5</span></div>
+			<div class="item-i">B/5<span>7</span></div>
+		</div> -->
+	</div>
+
+	<div id="content" style="background-color:cornflowerblue;">
+
+  </div>
+
+	<div class="range card">
+		<div class="range-t">音区</div>
+		<div class="radio">
+			<div class="radio-i">
+				<input type="radio" name="area" id="treble" checked value="treble">
+				<label class="radio-lb" for="treble">
+					<div class="radio-ic"></div>
+					高音
+				</label>
+			</div>
+			<div class="radio-i">
+				<input type="radio" name="area" id="bass" value="bass">
+				<label class="radio-lb" for="bass">
+					<div class="radio-ic"></div>
+					低音
+				</label>
+			</div>
+		</div>
+	</div>
+	<div class="range card vocal">
+		<div class="range-t">音高区间</div>
+		<input type="hidden" class="vocal-range" />
+	</div>
+
+	
+
+  <div class="hide-something"></div>
+
+
+    <!-- 广告 -->
+    <a href="" target="_blank" class="cppyright">Turing 提供技术支持</a>
+</body>
+
+</html>
+
+<script  src="./javascript/script.js"></script>
+
+<!--微信分享-->
+<script src="./javascript/jweixin-1.4.0.js"></script>
+<script src="./javascript/wxShare.js"></script>
