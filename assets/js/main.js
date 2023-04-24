@@ -27,16 +27,80 @@ var iUp = (function () {
 	}
 })();
 
+function showQuote(quote, author, intervalTime=50, elementId='description') {
+	$('#author').text(author);
+	$(`#${elementId}`).html('');
+  let i = 0;
+  let j = 0;
+
+  let intervalId = setInterval(function() {
+    if (i < quote.length) {
+      $(`#${elementId}`).html($(`#${elementId}`).html() + quote.substring(i, i + 1));
+      i++;
+    } else {
+      clearInterval(intervalId);
+    }
+  }, intervalTime);
+}
+
+function getRandomQuote(probability=0.65, language='en') {
+  // 生成一个 [0, 1) 之间的随机数
+  const random = Math.random();
+
+  // 如果生成的随机数小于概率值，则获取英语名言
+  if (language === 'en' && random < probability) {
+    fetch('https://quote-garden.onrender.com/api/v3/quotes/random')
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        // $('#description').html(data.data[0].quoteText + "<br/> - <strong>" + data.data[0].quoteAuthor + "</strong>")
+        showQuote(data.data[0].quoteText, data.data[0].quoteAuthor)
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
+  } 
+  // 否则获取中文名言
+  else {
+    fetch('https://v1.hitokoto.cn')
+      .then(function(res) {
+        return res.json();
+      })
+      .then(function(e) {
+        // $('#description').html(e.hitokoto + "<br/> -「<strong>" + e.from + "</strong>」")
+        showQuote(e.hitokoto, e.from, 100)
+      })
+      .catch(function(err) {
+        console.error(err);
+      });
+  }
+}
+
 $(document).ready(function () {
 
-	// 获取一言数据
-	fetch('https://v1.hitokoto.cn').then(function (res) {
-		return res.json();
-	}).then(function (e) {
-		$('#description').html(e.hitokoto + "<br/> -「<strong>" + e.from + "</strong>」")
-	}).catch(function (err) {
-		console.error(err);
-	})
+	// // 获取一言数据
+	// fetch('https://v1.hitokoto.cn').then(function (res) {
+	// 	return res.json();
+	// }).then(function (e) {
+	// 	$('#description').html(e.hitokoto + "<br/> -「<strong>" + e.from + "</strong>」")
+	// }).catch(function (err) {
+	// 	console.error(err);
+	// })
+
+	// // get English Quote
+	// fetch('https://quote-garden.onrender.com/api/v3/quotes/random')
+ //  .then(function(response) {
+ //    return response.json();
+ //  })
+ //  .then(function(data) {
+ //  	$('#description').html(data.data[0].quoteText + "<br/> -「<strong>" + data.data[0].quoteAuthor + "</strong>」")
+ //    // console.log(data.data[0].quoteText);
+ //  })
+ //  .catch(function(error) {
+ //    console.error(error);
+ //  });
+	 getRandomQuote();
 
 	
 	// var url = 'https://query.yahooapis.com/v1/public/yql' + 
