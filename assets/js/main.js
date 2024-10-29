@@ -48,14 +48,21 @@ function getRandomQuote(probability=0.65, language='en') {
   const random = Math.random();
 
   // 如果生成的随机数小于概率值，则获取英语名言
+	// https://github.com/tlcheah2/stoic-quote-lambda-public-api
   if (language === 'en' && random < probability) {
-    fetch('https://quote-garden.onrender.com/api/v3/quotes/random')
+    // fetch('https://quote-garden.onrender.com/api/v3/quotes/random')
+    fetch('https://stoic.tekloon.net/stoic-quote')
+    // fetch('https://api.allorigins.win/get?url=' + 
+		// 	encodeURIComponent('https://stoic.tekloon.net/stoic-quote')
+		// )
       .then(function(response) {
         return response.json();
       })
       .then(function(data) {
+				data = JSON.parse(data.contents).data
+				// console.log('data', data)
         // $('#description').html(data.data[0].quoteText + "<br/> - <strong>" + data.data[0].quoteAuthor + "</strong>")
-        showQuote(data.data[0].quoteText, data.data[0].quoteAuthor)
+        showQuote(data.quote, data.author)
       })
       .catch(function(error) {
         console.error(error);
@@ -78,7 +85,6 @@ function getRandomQuote(probability=0.65, language='en') {
 }
 
 $(document).ready(function () {
-
 	// // 获取一言数据
 	// fetch('https://v1.hitokoto.cn').then(function (res) {
 	// 	return res.json();
@@ -87,22 +93,8 @@ $(document).ready(function () {
 	// }).catch(function (err) {
 	// 	console.error(err);
 	// })
+	getRandomQuote();
 
-	// // get English Quote
-	// fetch('https://quote-garden.onrender.com/api/v3/quotes/random')
- //  .then(function(response) {
- //    return response.json();
- //  })
- //  .then(function(data) {
- //  	$('#description').html(data.data[0].quoteText + "<br/> -「<strong>" + data.data[0].quoteAuthor + "</strong>」")
- //    // console.log(data.data[0].quoteText);
- //  })
- //  .catch(function(error) {
- //    console.error(error);
- //  });
-	 getRandomQuote();
-
-	
 	// var url = 'https://query.yahooapis.com/v1/public/yql' + 
     // '?q=' + encodeURIComponent('select * from json where url=@url') +
     // '&url=' + encodeURIComponent('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8') +
