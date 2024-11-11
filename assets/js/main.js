@@ -51,10 +51,10 @@ function getRandomQuote(probability=0.65, language='en') {
 	// https://github.com/tlcheah2/stoic-quote-lambda-public-api
   if (language === 'en' && random < probability) {
     // fetch('https://quote-garden.onrender.com/api/v3/quotes/random')
-    fetch('https://stoic.tekloon.net/stoic-quote')
-    // fetch('https://api.allorigins.win/get?url=' + 
-		// 	encodeURIComponent('https://stoic.tekloon.net/stoic-quote')
-		// )
+    // fetch('https://stoic.tekloon.net/stoic-quote')
+    fetch('https://api.allorigins.win/get?url=' + 
+			encodeURIComponent('https://stoic.tekloon.net/stoic-quote')
+		)
       .then(function(response) {
         return response.json();
       })
