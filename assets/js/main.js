@@ -104,10 +104,11 @@ $(document).ready(function () {
 	 * 获取Bing壁纸
 	 * 
 	 */
+	var $panel = $('#panel');
+
 	// var url = 'https://bird.ioliu.cn/v1/?url=https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8';
 	// var imgUrls = JSON.parse(sessionStorage.getItem("imgUrls"));
 	// var index = sessionStorage.getItem("index");
-	// var $panel = $('#panel');
 	// if(imgUrls == null){
 	// 	imgUrls = new Array();
 	// 	index = 0;		
@@ -131,11 +132,11 @@ $(document).ready(function () {
 	// 		index++;
 	// 	var imgUrl = imgUrls[index];
 	// 	var url = "https://www.bing.com"+imgUrl;
-
 	// 	$panel.css("background", "url('"+url+"') center center no-repeat #666");
 	// 	$panel.css("background-size", "cover");
 	// 	sessionStorage.setItem("index",index);
 	// }
+
 	// https://github.com/flow2000/bing-wallpaper-api?tab=readme-ov-file
 	// https://bing.img.run/api.html
 	var url = "https://api.bimg.cc/random?w=1920&h=1080&mkt=zh-CN"
