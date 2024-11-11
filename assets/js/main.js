@@ -140,8 +140,11 @@ $(document).ready(function () {
 	// https://github.com/flow2000/bing-wallpaper-api?tab=readme-ov-file
 	// https://bing.img.run/api.html
 	var url = "https://api.bimg.cc/random?w=1920&h=1080&mkt=zh-CN"
-	$panel.css("background", "url('"+url+"') center center no-repeat #666");
-	$panel.css("background-size", "cover");
+	// $panel.css("background", "url('"+url+"') center center no-repeat #666");
+	if ($panel.length) {
+		$panel.css("background", `url('${url}') center center no-repeat #666`);
+		$panel.css("background-size", "cover");
+	}
 
 	$(".iUp").each(function (i, e) {
 		iUp.up(e);
