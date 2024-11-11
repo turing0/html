@@ -104,7 +104,7 @@ $(document).ready(function () {
 	 * 获取Bing壁纸
 	 * 
 	 */
-	var $panel = $('#panel');
+	// var $panel = $('#panel');
 
 	// var url = 'https://bird.ioliu.cn/v1/?url=https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8';
 	// var imgUrls = JSON.parse(sessionStorage.getItem("imgUrls"));
@@ -141,7 +141,8 @@ $(document).ready(function () {
 	// https://bing.img.run/api.html
 	var url = "https://api.bimg.cc/random?w=1920&h=1080&mkt=zh-CN"
 	// $panel.css("background", "url('"+url+"') center center no-repeat #666");
-	if ($panel.length) {
+	if ($('#panel')) {
+		var $panel = $('#panel');
 		$panel.css("background", `url('${url}') center center no-repeat #666`);
 		$panel.css("background-size", "cover");
 	}
