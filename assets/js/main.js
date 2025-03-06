@@ -30,9 +30,9 @@ var iUp = (function () {
 function showQuote(quote, author, intervalTime=50, elementId='description') {
 	$('#author').text(author);
 	$(`#${elementId}`).html('');
+	
   let i = 0;
   let j = 0;
-
   let intervalId = setInterval(function() {
     if (i < quote.length) {
       $(`#${elementId}`).html($(`#${elementId}`).html() + quote.substring(i, i + 1));

@@ -7993,10 +7993,10 @@ hr {
   max-width: none;
   height: 100%;
   background: center center no-repeat #666;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  /* -webkit-user-select: none; */
+  /* -moz-user-select: none; */
+  /* -ms-user-select: none; */
+  /* user-select: none; */
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
