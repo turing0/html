@@ -49,11 +49,12 @@ function getRandomQuote(probability=0.65, language='en') {
 
   // 如果生成的随机数小于概率值，则获取英语名言
 	// https://github.com/tlcheah2/stoic-quote-lambda-public-api
-  if (language === 'en' && random < probability) {
+  if ( 1 || language === 'en' && random < probability) {
     // fetch('https://quote-garden.onrender.com/api/v3/quotes/random')
     // fetch('https://stoic.tekloon.net/stoic-quote')
     fetch('https://api.allorigins.win/get?url=' + 
-			encodeURIComponent('https://stoic.tekloon.net/stoic-quote')
+			encodeURIComponent('https://stoic.tekloon.net/stoic-quote') + 
+			'&_=' + new Date().getTime()
 		)
       .then(function(response) {
         return response.json();
