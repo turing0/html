@@ -50,7 +50,8 @@
               <div class="info iUp">
                 <div class="info-back">
                   <h2>Fighting</h2>
-                  <p>2024 · 努力</p>
+                  <!-- <p>2024 · 努力</p> -->
+                  <p><span id="currentYear"></span> · 努力</p>
                 </div>
               </div>
             </a>
@@ -130,6 +131,7 @@
         </div>
       <div class="panel-cover--overlay cover-slate"></div>
     </div>
+    
     <!-- <div class="beian iUp">
       <a class="icp" href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank">XXX</a>
       <a class="gwab" href="http://www.beian.gov.cn/portal/recordQuery" target="_blank">XXX</a>
@@ -142,6 +144,14 @@
       </p>
     </div> -->
   </header>
+
+  <script>
+    const currentYear = new Date().getFullYear();
+    const yearElement = document.getElementById('currentYear');
+    if (yearElement) {
+      yearElement.textContent = currentYear;
+    }
+  </script>
   <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
   <script type="text/javascript" src="./assets/js/fetch.min.js"></script>
   <script type="text/javascript" src="./assets/js/main.js"></script>
