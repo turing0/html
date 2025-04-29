@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="height:100%;overflow:hidden;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="referrer" content="same-origin">
+    <meta name="force-rendering" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <title>单向历</title>
+    <style>
+        /* 设置容器为flex布局，水平和垂直居中 */
+        #container {
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: center; /* Center vertically */
+            align-items: center; /* Center horizontally */
+            height: 100%;
+            overflow: hidden;
+            background: linear-gradient(45deg, #6a82fb, #fc5c7d); /* 渐变背景 */
+            transition: background-color 0.3s ease; /* Background color transition */
+            padding: 20px; /* Add some padding */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* Improved font stack */
+        }
+
+        /* Container for date picker and buttons */
+        #controls {
+            margin-bottom: 20px; /* Space below controls */
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Increased space between elements */
+            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+            justify-content: center; /* Center controls when wrapped */
+        }
+
+        /* Style for the date input */
+        #datePicker {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            text-align: center;
+            min-width: 150px; /* Ensure date picker has a minimum width */
+        }
+
+        /* Style for navigation buttons */
+        .nav-button {
+            padding: 10px; /* Equal padding for icon buttons */
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            display: flex; /* Use flex to center icon */
+            justify-content: center;
+            align-items: center;
+            width: 40px; /* Fixed width for square buttons */
+            height: 40px; /* Fixed height for square buttons */
+        }
+
+        .nav-button:hover {
+            background-color: rgba(255, 255, 255, 1);
+            transform: scale(1.1); /* Slightly larger scale on hover */
+        }
+
+        .nav-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Style for SVG icons within buttons */
+        .nav-button svg {
+            width: 20px; /* Icon size */
+            height: 20px; /* Icon size */
+            fill: #333; /* Icon color */
+        }
+
+
+        /* Image container styles */
+        #rili {
+             display: flex; /* Use flex to center the image within its container */
+             justify-content: center;
+             align-items: center;
+             width: 100%; /* Ensure container takes full width */
+             flex-grow: 1; /* Allow rili to take up remaining space */
+             overflow: hidden;
+        }
+
+
+        /* 图片样式, 增加圆角和阴影效果 */
+        #rili img {
+            max-height: 100%; /* Use 100% of parent height */
+            max-width: 100%; /* Use 100% of parent width */
+            border-radius: 15px; /* 圆角 */
+            border: 10px solid rgba(255, 255, 255, 0.8); /* Border becomes softer */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Increased shadow effect */
+            position: relative;
+            /* cursor: pointer; Removed click to refresh, as nav buttons are added */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Image animation effect */
+            object-fit: contain; /* Ensure the image fits within the bounds */
+             box-sizing: border-box; /* Include border in element's total width and height */
+        }
+
+        /* Image hover effect (optional now with buttons) */
+        /* #rili img:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+        } */
+
+         /* Style for the loading/error message */
+        #rili p {
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* For smaller screens, adjust layout */
+        @media (max-width: 600px) { /* Adjusted breakpoint slightly */
+            #container {
+                padding: 10px;
+            }
+            #controls {
+                flex-direction: column; /* Stack controls vertically on small screens */
+                gap: 10px;
+            }
+             .nav-button, #datePicker {
+                width: 80%; /* Wider controls on small screens */
+                max-width: 300px; /* Limit max width */
+                box-sizing: border-box; /* Include padding in width */
+            }
+             #rili img {
+                width: 95vw; /* Use a percentage of viewport width */
+                height: auto; /* Auto height to maintain aspect ratio */
+                border-width: 5px; /* Smaller border on small screens */
+            }
+        }
+    </style>
+    <script>
+        /* Get current date and dynamically load image */
+        function getRili(dateString) {
+            let y, m, n;
+            if (dateString) {
+                const date = new Date(dateString);
+                y = date.getFullYear();
+                m = date.getMonth() + 1;
+                n = date.getDate();
+            } else {
+                const d = new Date();
+                y = d.getFullYear();
+                m = d.getMonth() + 1;
+                n = d.getDate();
+            }
+
+            /* Pad month and day with leading zeros */
+            m = m > 9 ? m : "0" + m;
+            n = n > 9 ? n : "0" + n;
+
+            /* Construct image link */
+            var imgSrc = "https://img.owspace.com/Public/uploads/Download/" + y + "/" + m + n + ".jpg";
+
+            /* Display image and handle loading */
+            var img = new Image();
+            img.onload = function() {
+                 document.getElementById("rili").innerHTML = '<img src="' + imgSrc + '" alt="单向历图片">';
+            }
+            img.onerror = function() {
+                document.getElementById("rili").innerHTML = '<p>无法加载该日期的图片，请选择其他日期.</p>';
+            }
+            // Clear previous image or message while loading
+            document.getElementById("rili").innerHTML = '';
+            img.src = imgSrc; // Set the src to start loading the image
+        }
+
+        /* Function to navigate to the previous day */
+        function prevDay() {
+            const datePicker = document.getElementById("datePicker");
+            const currentDate = new Date(datePicker.value);
+            currentDate.setDate(currentDate.getDate() - 1);
+            const year = currentDate.getFullYear();
+            const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+            const day = currentDate.getDate().toString().padStart(2, '0');
+            const newDateString = `${year}-${month}-${day}`;
+            datePicker.value = newDateString;
+            getRili(newDateString);
+        }
+
+        /* Function to navigate to the next day */
+        function nextDay() {
+            const datePicker = document.getElementById("datePicker");
+            const currentDate = new Date(datePicker.value);
+            currentDate.setDate(currentDate.getDate() + 1);
+            const year = currentDate.getFullYear();
+            const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+            const day = currentDate.getDate().toString().padStart(2, '0');
+            const newDateString = `${year}-${month}-${day}`;
+            datePicker.value = newDateString;
+            getRili(newDateString);
+        }
+
+
+        /* Page loaded, initialize */
+        window.onload = function() {
+            const datePicker = document.getElementById("datePicker");
+            const prevButton = document.getElementById("prevDayButton");
+            const nextButton = document.getElementById("nextDayButton");
+
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = (today.getMonth() + 1).toString().padStart(2, '0');
+            const day = today.getDate().toString().padStart(2, '0');
+            const todayString = `${year}-${month}-${day}`;
+            datePicker.value = todayString; // Set default date to today
+            getRili(todayString); // Load today's image
+
+            /* Add event listeners */
+            datePicker.addEventListener("change", function() {
+                getRili(this.value); // Load image for the selected date
+            });
+
+            prevButton.addEventListener("click", prevDay);
+            nextButton.addEventListener("click", nextDay);
+        };
+    </script>
+</head>
+<body id="container">
+    <div id="controls">
+        <button id="prevDayButton" class="nav-button" aria-label="上一天">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <input type="date" id="datePicker">
+        <button id="nextDayButton" class="nav-button" aria-label="下一天">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+    </div>
+    <div id="rili">
+        </div>
+</body>
+</html>
