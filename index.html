@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
 <head>
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Laphel Home">
   <meta name="keywords" content="Laphel,Homepage,Blog">
   <meta name="author" content="Laphel">
+  <link rel="canonical" href="https://laphel.com/">
   <meta property="og:title" content="Laphel"/>
   <meta property="og:description" content="Laphel Home"/>
   <meta property="og:url" content="https://laphel.com"/>
@@ -18,19 +18,324 @@
   <meta property="og:image" content="https://laphel.com/og.png"/>
   <!-- <meta property="og:image:width" content="1920"/> -->
   <!-- <meta property="og:image:height" content="1080"/> -->
-  <meta property="twitter:image" content="https://laphel.com/og.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Laphel"/>
+  <meta name="twitter:description" content="Laphel Home"/>
+  <meta name="twitter:image" content="https://laphel.com/og.png"/>
   <title>Laphel Home</title>
   <!-- <link rel='stylesheet' type='text/css' href='https://cdn.webfont.youziku.com/webfonts/nomal/123918/33195/5d21f88af629d8080c5960eb.css' /> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="./assets/css/vno.css">
   <link rel="stylesheet" type="text/css" href="./assets/css/iconfont.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@500;600&display=swap">
   <link rel="apple-touch-icon" href="./apple-touch-icon.png">
   <link rel="icon" href="./favicon.png">
 
   <style>
+    /* ======================================================================
+       Laphel — Editorial / refined-luxury cover (homepage-scoped overrides)
+       Type: Playfair Display (wordmark) · Cormorant Garamond (prose)
+       Palette: warm white #f5f1ea · champagne accent #c8a96a · ink #0b0c0f
+       ====================================================================== */
+
+    :root {
+      --ink: #0b0c0f;
+      --paper: #f5f1ea;
+      --gold: #c8a96a;
+    }
+
+    html,
+    body {
+      background: var(--ink);
+    }
+
     .panel-main__content {
-        max-width: 700px;
-        margin: 0 auto;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .panel-main__inner {
+      padding: 0 60px;
+    }
+
+    /* --- Background: dark fallback + cinematic, photo-agnostic scrim --- */
+    .panel-cover {
+      background-color: var(--ink);
+      background-image: linear-gradient(140deg, #16181f 0%, #0a0b0e 100%);
+    }
+
+    .panel-cover--overlay {
+      opacity: 1;
+      background:
+        radial-gradient(125% 125% at 50% 32%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.58) 100%),
+        linear-gradient(to bottom, rgba(8, 9, 12, 0.55) 0%, rgba(8, 9, 12, 0.22) 46%, rgba(6, 7, 9, 0.82) 100%);
+      -webkit-backdrop-filter: blur(2px) saturate(0.82) brightness(0.88);
+      backdrop-filter: blur(2px) saturate(0.82) brightness(0.88);
+    }
+
+    /* --- Wordmark --- */
+    .panel-cover .panel-title {
+      font-family: "Playfair Display", "Songti SC", Georgia, serif;
+      font-weight: 500;
+      font-size: 4em;
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      margin: 0 0 0.18em;
+      text-shadow: 0 2px 34px rgba(0, 0, 0, 0.55);
+    }
+    .panel-cover .panel-title a {
+      color: var(--paper);
+    }
+
+    /* --- Tagline: italic serif --- */
+    .panel-cover .panel-subtitle {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.5em;
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+      color: rgba(245, 241, 234, 0.82);
+      text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
+    }
+
+    /* --- Hairline divider --- */
+    .panel-cover .panel-cover__divider {
+      border: 0;
+      width: 44px;
+      height: 1px;
+      margin: 30px auto;
+      background: rgba(200, 169, 106, 0.7);
+    }
+
+    /* --- Quote (prose) --- */
+    .panel-cover #description.panel-cover__description {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 400;
+      font-size: 1.6em;
+      line-height: 1.6;
+      letter-spacing: 0.005em;
+      color: rgba(245, 241, 234, 0.95);
+      margin: 0 auto;
+      min-height: 1.6em;
+    }
+
+    /* --- Attribution: tracked uppercase sans --- */
+    .panel-cover #author.panel-cover__description {
+      margin-top: 16px;
+      font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 0.7em;
+      font-weight: 400;
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      text-indent: 0.26em;
+      color: rgba(245, 241, 234, 0.55);
+    }
+    .panel-cover #author strong {
+      font-weight: 500;
+    }
+
+    /* --- Avatar: single fine ring, refined backface --- */
+    .ih-item.circle {
+      width: 104px;
+      height: 104px;
+    }
+    .ih-item.circle .img,
+    .ih-item.circle .img img {
+      width: 104px;
+      height: 104px;
+    }
+    .ih-item.circle .img img {
+      box-shadow: 0 0 0 1px rgba(245, 241, 234, 0.45), 0 18px 48px rgba(0, 0, 0, 0.5);
+    }
+    .ih-item.circle.effect .info .info-back {
+      background: rgba(11, 12, 15, 0.92);
+      box-shadow: inset 0 0 0 1px rgba(200, 169, 106, 0.5);
+    }
+    .ih-item.circle.effect .info h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 500;
+      font-size: 20px;
+      text-shadow: none;
+    }
+    .ih-item.circle.effect .info p {
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 9px;
+      color: var(--gold);
+    }
+
+    /* --- Navigation: minimal links with center-out gold underline --- */
+    .cover-navigation {
+      margin-top: 44px;
+    }
+    .cover-navigation--social {
+      margin-left: 0;
+    }
+    /* Primary nav = one frosted-glass bar with hairline dividers */
+    .cover-navigation--primary .navigation {
+      float: none;
+      display: inline-flex;
+      align-items: stretch;
+      margin: 0;
+      padding: 0;
+      border: 1px solid rgba(245, 241, 234, 0.20);
+      border-radius: 100px;
+      background: rgba(245, 241, 234, 0.07);
+      -webkit-backdrop-filter: blur(14px) saturate(1.1);
+      backdrop-filter: blur(14px) saturate(1.1);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+    .cover-navigation--primary .navigation__item {
+      display: flex;
+      margin: 0;
+    }
+    .cover-navigation--primary .navigation__item + .navigation__item {
+      border-left: 1px solid rgba(245, 241, 234, 0.14);
+    }
+    .cover-navigation--primary .navigation__item a {
+      display: flex;
+      align-items: center;
+      padding: 13px 28px;
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+      background: none;
+      font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 0.7em;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-indent: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245, 241, 234, 0.78);
+      opacity: 1;
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+    .cover-navigation--primary .navigation__item a:hover {
+      color: var(--paper);
+      background: rgba(245, 241, 234, 0.13);
+    }
+
+    /* --- Social: muted icons, gold on hover --- */
+    .panel-cover .navigation--social a {
+      padding: 6px 12px;
+      color: rgba(245, 241, 234, 0.62);
+      opacity: 1;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .panel-cover .navigation--social a:hover {
+      color: var(--gold);
+      transform: translateY(-3px);
+    }
+
+    /* --- Accessibility --- */
+    a:focus-visible {
+      outline: 1px solid rgba(232, 224, 210, 0.85);
+      outline-offset: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .iUp {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      * {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.05ms !important;
+      }
+    }
+
+    /* --- Responsive --- */
+    @media all and (max-width: 960px) {
+      .panel-main__inner {
+        padding: 60px 8%;
+      }
+      .panel-cover .panel-title {
+        font-size: 3em;
+      }
+      .panel-cover #description.panel-cover__description {
+        font-size: 1.4em;
+      }
+
+      /* Top bar: frosted glass to match the cover */
+      .btn-mobile-menu {
+        height: 46px;
+        background: rgba(11, 12, 15, 0.55);
+        -webkit-backdrop-filter: blur(12px) saturate(1.1);
+        backdrop-filter: blur(12px) saturate(1.1);
+        border-bottom: 1px solid rgba(245, 241, 234, 0.12);
+      }
+      .btn-mobile-menu__icon,
+      .btn-mobile-close__icon {
+        top: 14px;
+        color: var(--paper);
+      }
+
+      /* Dropdown menu: dark frosted glass + refined spacing */
+      .navigation-wrapper {
+        padding: 26px 0 30px;
+        background: rgba(10, 11, 14, 0.92);
+        -webkit-backdrop-filter: blur(18px) saturate(1.1);
+        backdrop-filter: blur(18px) saturate(1.1);
+        border-bottom: 1px solid rgba(245, 241, 234, 0.12);
+      }
+      .cover-navigation--primary .navigation__item + .navigation__item a {
+        border-top: 1px solid rgba(245, 241, 234, 0.08);
+      }
+
+      /* Social row: clean centered flex, never clipped at the edge */
+      .cover-navigation.navigation--social .navigation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        float: none;
+      }
+      .cover-navigation.navigation--social .navigation li {
+        width: auto;
+        display: inline-flex;
+      }
+
+      /* Collapse the glass bar back to a simple stacked menu on mobile */
+      .cover-navigation--primary .navigation {
+        display: block;
+        border: 0;
+        border-radius: 0;
+        background: none;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        box-shadow: none;
+        overflow: visible;
+      }
+      .cover-navigation--primary .navigation li,
+      .cover-navigation--primary .navigation__item {
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+      .cover-navigation--primary .navigation__item + .navigation__item {
+        border-left: 0;
+      }
+      .cover-navigation--primary .navigation__item a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+      }
+    }
+    @media all and (max-width: 480px) {
+      .panel-cover .panel-title {
+        font-size: 2.4em;
+      }
+      .panel-cover .panel-subtitle {
+        font-size: 1.25em;
+      }
     }
   </style>
 </head>
@@ -44,13 +349,13 @@
     <div class="panel-main">
       <div class="panel-main__inner panel-inverted">
         <div class="panel-main__content">
-          <div class="ih-item circle effect right_to_left">            
+          <div class="ih-item circle effect right_to_left iUp">
             <a href="#" title="" class="blog-button">
-              <div class="img"><img src="./img/logo2.jpg" alt="img" class="js-avatar iUp profilepic"></div>
-              <div class="info iUp">
+              <div class="img"><img src="./img/logo2.jpg" alt="img" class="js-avatar profilepic"></div>
+              <div class="info">
                 <div class="info-back">
                   <h2>探索</h2>
-                  <p><span id="currentYear"></span> · Venturing</p>
+                  <p>Venturing</p>
                 </div>
               </div>
             </a>
@@ -91,7 +396,14 @@
               <nav class="cover-navigation navigation--social">
                 <ul class="navigation">
                   <li class="navigation__item">
-                      <a href="#" title="github" target="_blank">
+                      <a href="https://t.me/hackandart" title="channel" target="_blank">
+                        <!-- <i class='social iconfont icon-zhihu'></i> -->
+                        <i class="social fa fa-telegram"></i>
+                        <span class="label">Telegram</span>
+                      </a>
+                    </li>
+                  <li class="navigation__item">
+                      <a href="https://github.com/turing0" title="github" target="_blank">
                         <i class='social iconfont icon-github'></i>
                         <span class="label">GitHub</span>
                       </a>
@@ -104,14 +416,7 @@
                     </li> -->
 
                     <li class="navigation__item">
-                      <a href="https://t.me/hackandart" title="channel" target="_blank">
-                        <!-- <i class='social iconfont icon-zhihu'></i> -->
-                        <i class="social fa fa-telegram"></i>
-                        <span class="label">Telegram</span>
-                      </a>
-                    </li>
-                    <li class="navigation__item">
-                      <a href="mailto:laphel@protonmail.com" title="email">
+                      <a href="mailto:mela541dnie@gmail.com" title="email">
                         <i class='social iconfont icon-email'></i>
                         <span class="label">Email</span>
                       </a>
@@ -144,16 +449,8 @@
     </div> -->
   </header>
 
-  <script>
-    const currentYear = new Date().getFullYear();
-    const yearElement = document.getElementById('currentYear');
-    if (yearElement) {
-      yearElement.textContent = currentYear;
-    }
-  </script>
-  <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
-  <script type="text/javascript" src="./assets/js/fetch.min.js"></script>
-  <script type="text/javascript" src="./assets/js/main.js"></script>
+  <script defer src="./assets/js/jquery.min.js"></script>
+  <script defer src="./assets/js/main.js"></script>
 </body>
 
 </html>
