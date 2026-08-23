@@ -850,27 +850,48 @@
         cell = containerW < 520 ? 7 : 9;
         cols = Math.max(40, Math.floor(containerW / cell));
 
-        // Sample the wordmark on a tiny offscreen canvas: 1 pixel = 1 cell.
-        // Render with generous margins, then crop to the actual inked pixels —
-        // font metrics (ascent/descent) are unreliable on iOS Safari.
+        // Sample the wordmark on an offscreen canvas at 3x supersampling:
+        // each grid cell = SSxSS pixels, a cell is "on" when enough of its
+        // block is inked. Thin antialiased strokes (small sizes, iOS Safari)
+        // survive this; single-pixel threshold sampling loses them.
+        // Bounds come from the inked pixels, not font metrics (unreliable on iOS).
+        var pad = 3;
+        // Small screens: coarse grid + thin antialiased strokes need forgiving
+        // sampling (3x supersampling, bolder weight, low thresholds) or the
+        // letterform falls apart. Desktop uses SS=1 with the exact original
+        // rule (weight 300, 1px per cell, alpha>140) so the look is unchanged.
+        var fine = containerW < 520;
+        var SS = fine ? 3 : 1;
+        var weight = fine ? '500' : '300';
+        var alphaThresh = fine ? 100 : 140;
+        var minCount = fine ? 2 : 1;
         var mc = document.createElement('canvas');
         var mctx = mc.getContext('2d');
-        mctx.font = '300 100px "Space Grotesk", sans-serif';
+        mctx.font = weight + ' 100px "Space Grotesk", sans-serif';
         var w100 = mctx.measureText(TEXT).width || 300;
         var f = 100 * cols / w100;
-        var pad = 3;
-        mc.width = cols + pad * 2;
-        mc.height = Math.ceil(f * 1.7);
-        mctx.font = '300 ' + f + 'px "Space Grotesk", sans-serif';
+        var gridW = cols + pad * 2;
+        var gridH = Math.ceil(f * 1.7);
+        mc.width = gridW * SS;
+        mc.height = gridH * SS;
+        mctx.font = weight + ' ' + (f * SS) + 'px "Space Grotesk", sans-serif';
         mctx.fillStyle = '#fff';
-        mctx.fillText(TEXT, pad, Math.round(f * 1.15));
+        mctx.fillText(TEXT, pad * SS, Math.round(f * 1.15 * SS));
         var img = mctx.getImageData(0, 0, mc.width, mc.height).data;
 
-        // Find the inked bounding box
-        var minX = mc.width, maxX = -1, minY = mc.height, maxY = -1, x, y;
-        for (y = 0; y < mc.height; y++) {
-          for (x = 0; x < mc.width; x++) {
-            if (img[(y * mc.width + x) * 4 + 3] > 140) {
+        // Per-cell coverage: count inked pixels in each SSxSS block
+        var onGrid = new Uint8Array(gridW * gridH);
+        var minX = gridW, maxX = -1, minY = gridH, maxY = -1, x, y, sx, sy;
+        for (y = 0; y < gridH; y++) {
+          for (x = 0; x < gridW; x++) {
+            var count = 0;
+            for (sy = 0; sy < SS; sy++) {
+              for (sx = 0; sx < SS; sx++) {
+                if (img[((y * SS + sy) * mc.width + (x * SS + sx)) * 4 + 3] > alphaThresh) count++;
+              }
+            }
+            if (count >= minCount) {
+              onGrid[y * gridW + x] = 1;
               if (x < minX) minX = x;
               if (x > maxX) maxX = x;
               if (y < minY) minY = y;
@@ -885,7 +906,7 @@
         cells = [];
         for (y = minY; y <= maxY; y++) {
           for (x = minX; x <= maxX; x++) {
-            if (img[(y * mc.width + x) * 4 + 3] > 140) {
+            if (onGrid[y * gridW + x]) {
               cells.push({
                 x: x - minX, y: y - minY,
                 ch: GLYPHS.charAt(Math.floor(Math.random() * GLYPHS.length)),
