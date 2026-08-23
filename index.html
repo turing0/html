@@ -2,455 +2,885 @@
 <html lang="zh-CN">
 
 <head>
-  <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Laphel Home">
-  <meta name="keywords" content="Laphel,Homepage,Blog">
+  <meta name="description" content="Laphel 的个人主页 — 博客 Blog、数字花园 Garden、关于 About 与推荐 Perks 的入口。Builder &amp; explorer: Web · Infra · Crypto.">
+  <meta name="keywords" content="Laphel,Homepage,Blog,Digital Garden,Web,Crypto">
   <meta name="author" content="Laphel">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0b0c0e">
   <link rel="canonical" href="https://laphel.com/">
   <meta property="og:title" content="Laphel"/>
-  <meta property="og:description" content="Laphel Home"/>
-  <meta property="og:url" content="https://laphel.com"/>
+  <meta property="og:description" content="Laphel 的个人主页 — 博客、数字花园、关于与推荐的入口。"/>
+  <meta property="og:url" content="https://laphel.com/"/>
   <meta property="og:site_name" content="Laphel"/>
-  <meta property="og:locale" content="en-US"/>
+  <meta property="og:locale" content="zh_CN"/>
   <meta property="og:type" content="website"/>
   <meta property="og:image" content="https://laphel.com/og.png"/>
-  <!-- <meta property="og:image:width" content="1920"/> -->
-  <!-- <meta property="og:image:height" content="1080"/> -->
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Laphel"/>
-  <meta name="twitter:description" content="Laphel Home"/>
+  <meta name="twitter:description" content="Laphel 的个人主页 — 博客、数字花园、关于与推荐的入口。"/>
   <meta name="twitter:image" content="https://laphel.com/og.png"/>
-  <title>Laphel Home</title>
-  <!-- <link rel='stylesheet' type='text/css' href='https://cdn.webfont.youziku.com/webfonts/nomal/123918/33195/5d21f88af629d8080c5960eb.css' /> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="./assets/css/vno.css">
-  <link rel="stylesheet" type="text/css" href="./assets/css/iconfont.css">
+  <title>Laphel — Home</title>
+  <link rel="icon" href="./favicon.png">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://laphel.com/#website",
+        "url": "https://laphel.com/",
+        "name": "Laphel",
+        "description": "Laphel 的个人主页",
+        "inLanguage": "zh-CN"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://laphel.com/#person",
+        "name": "Laphel",
+        "url": "https://laphel.com/",
+        "sameAs": [
+          "https://github.com/turing0",
+          "https://t.me/hackandart",
+          "https://blog.laphel.com",
+          "https://garden.laphel.com",
+          "https://about.laphel.com"
+        ]
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@500;600&display=swap">
-  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-  <link rel="icon" href="./favicon.png">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap">
 
   <style>
-    /* ======================================================================
-       Laphel — Editorial / refined-luxury cover (homepage-scoped overrides)
-       Type: Playfair Display (wordmark) · Cormorant Garamond (prose)
-       Palette: warm white #f5f1ea · champagne accent #c8a96a · ink #0b0c0f
-       ====================================================================== */
+    /* ==================================================================
+       Laphel — Quiet-tech personal index
+       Palette: near-black #0b0c0e · fog gray #9aa0a6 · paper #e8eaed
+       Type: Space Grotesk (display) · JetBrains Mono (micro labels)
+       ================================================================== */
 
     :root {
-      --ink: #0b0c0f;
-      --paper: #f5f1ea;
-      --gold: #c8a96a;
+      --bg: #0b0c0e;
+      --bg-soft: #101215;
+      --line: rgba(232, 234, 237, 0.10);
+      --line-strong: rgba(232, 234, 237, 0.22);
+      --ink: #e8eaed;
+      --ink-dim: #9aa0a6;
+      --ink-faint: #5f6368;
+      --accent: #aab4c4;
+      --sans: "Space Grotesk", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+      --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
     }
 
-    html,
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      background: var(--ink);
-    }
-
-    .panel-main__content {
-      max-width: 640px;
-      margin: 0 auto;
-    }
-
-    .panel-main__inner {
-      padding: 0 60px;
-    }
-
-    /* --- Background: dark fallback + cinematic, photo-agnostic scrim --- */
-    .panel-cover {
-      background-color: var(--ink);
-      background-image: linear-gradient(140deg, #16181f 0%, #0a0b0e 100%);
-    }
-
-    .panel-cover--overlay {
-      opacity: 1;
-      background:
-        radial-gradient(125% 125% at 50% 32%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.58) 100%),
-        linear-gradient(to bottom, rgba(8, 9, 12, 0.55) 0%, rgba(8, 9, 12, 0.22) 46%, rgba(6, 7, 9, 0.82) 100%);
-      -webkit-backdrop-filter: blur(2px) saturate(0.82) brightness(0.88);
-      backdrop-filter: blur(2px) saturate(0.82) brightness(0.88);
-    }
-
-    /* --- Wordmark --- */
-    .panel-cover .panel-title {
-      font-family: "Playfair Display", "Songti SC", Georgia, serif;
-      font-weight: 500;
-      font-size: 4em;
-      line-height: 1.05;
-      letter-spacing: 0.04em;
-      margin: 0 0 0.18em;
-      text-shadow: 0 2px 34px rgba(0, 0, 0, 0.55);
-    }
-    .panel-cover .panel-title a {
-      color: var(--paper);
-    }
-
-    /* --- Tagline: italic serif --- */
-    .panel-cover .panel-subtitle {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-style: italic;
-      font-weight: 400;
-      font-size: 1.5em;
-      line-height: 1.5;
-      letter-spacing: 0.01em;
-      color: rgba(245, 241, 234, 0.82);
-      text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
-    }
-
-    /* --- Hairline divider --- */
-    .panel-cover .panel-cover__divider {
-      border: 0;
-      width: 44px;
-      height: 1px;
-      margin: 30px auto;
-      background: rgba(200, 169, 106, 0.7);
-    }
-
-    /* --- Quote (prose) --- */
-    .panel-cover #description.panel-cover__description {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-weight: 400;
-      font-size: 1.6em;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
       line-height: 1.6;
-      letter-spacing: 0.005em;
-      color: rgba(245, 241, 234, 0.95);
-      margin: 0 auto;
-      min-height: 1.6em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* --- Attribution: tracked uppercase sans --- */
-    .panel-cover #author.panel-cover__description {
-      margin-top: 16px;
-      font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-      font-size: 0.7em;
-      font-weight: 400;
-      font-style: normal;
-      text-transform: uppercase;
-      letter-spacing: 0.26em;
-      text-indent: 0.26em;
-      color: rgba(245, 241, 234, 0.55);
+    ::selection { background: rgba(170, 180, 196, 0.25); color: var(--ink); }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* --- Fixed hairline grid backdrop --- */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right, var(--line) 1px, transparent 1px);
+      background-size: 25% 100%;
+      background-position: 0 0;
+      opacity: 0.5;
     }
-    .panel-cover #author strong {
-      font-weight: 500;
+    .grid-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(90% 60% at 50% 0%, rgba(170, 180, 196, 0.06) 0%, transparent 70%);
     }
 
-    /* --- Avatar: single fine ring, refined backface --- */
-    .ih-item.circle {
-      width: 104px;
-      height: 104px;
-    }
-    .ih-item.circle .img,
-    .ih-item.circle .img img {
-      width: 104px;
-      height: 104px;
-    }
-    .ih-item.circle .img img {
-      box-shadow: 0 0 0 1px rgba(245, 241, 234, 0.45), 0 18px 48px rgba(0, 0, 0, 0.5);
-    }
-    .ih-item.circle.effect .info .info-back {
-      background: rgba(11, 12, 15, 0.92);
-      box-shadow: inset 0 0 0 1px rgba(200, 169, 106, 0.5);
-    }
-    .ih-item.circle.effect .info h2 {
-      font-family: "Playfair Display", Georgia, serif;
-      font-weight: 500;
-      font-size: 20px;
-      text-shadow: none;
-    }
-    .ih-item.circle.effect .info p {
-      font-style: normal;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: 9px;
-      color: var(--gold);
-    }
-
-    /* --- Navigation: minimal links with center-out gold underline --- */
-    .cover-navigation {
-      margin-top: 44px;
-    }
-    .cover-navigation--social {
-      margin-left: 0;
-    }
-    /* Primary nav = one frosted-glass bar with hairline dividers */
-    .cover-navigation--primary .navigation {
-      float: none;
-      display: inline-flex;
-      align-items: stretch;
-      margin: 0;
-      padding: 0;
-      border: 1px solid rgba(245, 241, 234, 0.20);
-      border-radius: 100px;
-      background: rgba(245, 241, 234, 0.07);
-      -webkit-backdrop-filter: blur(14px) saturate(1.1);
-      backdrop-filter: blur(14px) saturate(1.1);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      overflow: hidden;
-    }
-    .cover-navigation--primary .navigation__item {
-      display: flex;
-      margin: 0;
-    }
-    .cover-navigation--primary .navigation__item + .navigation__item {
-      border-left: 1px solid rgba(245, 241, 234, 0.14);
-    }
-    .cover-navigation--primary .navigation__item a {
+    /* ================= Navigation ================= */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
       display: flex;
       align-items: center;
-      padding: 13px 28px;
-      margin: 0;
-      border: 0;
-      border-radius: 0;
-      background: none;
-      font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-      font-size: 0.7em;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-indent: 0.18em;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      border-bottom: 1px solid transparent;
+      transition: background 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
+    }
+    .nav.scrolled {
+      background: rgba(11, 12, 14, 0.72);
+      -webkit-backdrop-filter: blur(14px) saturate(1.1);
+      backdrop-filter: blur(14px) saturate(1.1);
+      border-bottom-color: var(--line);
+    }
+    .nav__logo {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(245, 241, 234, 0.78);
-      opacity: 1;
-      transition: color 0.3s ease, background-color 0.3s ease;
+      color: var(--ink);
     }
-    .cover-navigation--primary .navigation__item a:hover {
-      color: var(--paper);
-      background: rgba(245, 241, 234, 0.13);
+    .nav__logo span { color: var(--ink-faint); }
+    .nav__links {
+      display: flex;
+      gap: 4px;
+      list-style: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav__links a {
+      display: block;
+      padding: 8px 14px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      transition: color 0.3s ease;
+    }
+    .nav__links a:hover { color: var(--ink); }
+    .nav__toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--line-strong);
+      color: var(--ink-dim);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      cursor: pointer;
     }
 
-    /* --- Social: muted icons, gold on hover --- */
-    .panel-cover .navigation--social a {
-      padding: 6px 12px;
-      color: rgba(245, 241, 234, 0.62);
-      opacity: 1;
-      transition: color 0.3s ease, transform 0.3s ease;
+    /* ================= Hero ================= */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 40px 80px;
+      max-width: 1160px;
+      margin: 0 auto;
     }
-    .panel-cover .navigation--social a:hover {
-      color: var(--gold);
-      transform: translateY(-3px);
+    .hero h1 {
+      font-size: clamp(64px, 14vw, 172px);
+      font-weight: 300;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .hero h1 .dot { color: var(--accent); }
+    .hero__tagline {
+      margin-top: 34px;
+      max-width: 520px;
+      font-size: 17px;
+      color: var(--ink-dim);
+      font-weight: 300;
+    }
+    .hero__quote {
+      margin-top: 56px;
+      padding-left: 18px;
+      border-left: 1px solid var(--line-strong);
+      max-width: 440px;
+    }
+    .hero__quote p {
+      font-size: 14px;
+      color: var(--ink-faint);
+      font-style: italic;
+      min-height: 2.6em;
+    }
+    .hero__quote cite {
+      display: block;
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-style: normal;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+    .hero__scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink-faint);
+      transition: color 0.3s ease;
+    }
+    .hero__scroll:hover { color: var(--ink-dim); }
+    .hero__scroll::before {
+      content: "";
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, var(--line-strong));
+    }
+    .hero__scroll svg {
+      animation: nudge 2.2s ease-in-out infinite;
+    }
+    @keyframes nudge {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50%      { transform: translateY(5px); opacity: 1; }
     }
 
-    /* --- Accessibility --- */
-    a:focus-visible {
-      outline: 1px solid rgba(232, 224, 210, 0.85);
+    /* ================= Sections ================= */
+    .section {
+      position: relative;
+      z-index: 1;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 110px 40px;
+      border-top: 1px solid var(--line);
+    }
+    .section__head {
+      display: flex;
+      align-items: baseline;
+      gap: 22px;
+      margin-bottom: 64px;
+    }
+    .section__num {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--ink-faint);
+    }
+    .section__title {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+    }
+
+    /* --- About --- */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+    .about__lead {
+      font-size: clamp(20px, 2.6vw, 28px);
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--ink);
+    }
+    .about__lead em {
+      font-style: normal;
+      color: var(--ink-faint);
+    }
+    .about__facts { list-style: none; }
+    .about__facts li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+      color: var(--ink-dim);
+    }
+    .about__facts li:first-child { border-top: 1px solid var(--line); }
+    .about__facts .k {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    /* --- Index (expandable rows) --- */
+    .idx { list-style: none; border-top: 1px solid var(--line-strong); }
+    .idx__item { border-bottom: 1px solid var(--line); }
+    .idx__row {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 64px 1fr auto 44px;
+      align-items: center;
+      gap: 20px;
+      padding: 30px 4px;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      text-align: left;
+      color: inherit;
+      font-family: inherit;
+      transition: padding 0.35s ease;
+    }
+    .idx__row:hover { padding-left: 14px; }
+    .idx__no {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--ink-faint);
+    }
+    .idx__name {
+      font-size: clamp(22px, 3.4vw, 34px);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      transition: color 0.3s ease;
+    }
+    .idx__item.open .idx__name,
+    .idx__row:hover .idx__name { color: var(--accent); }
+    .idx__url {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+    }
+    .idx__plus {
+      justify-self: end;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.4s ease, border-color 0.3s ease;
+    }
+    .idx__plus::before,
+    .idx__plus::after {
+      content: "";
+      position: absolute;
+      background: var(--ink-dim);
+      transition: background 0.3s ease;
+    }
+    .idx__plus::before { width: 12px; height: 1px; }
+    .idx__plus::after { width: 1px; height: 12px; }
+    .idx__item.open .idx__plus { transform: rotate(45deg); border-color: var(--accent); }
+    .idx__item.open .idx__plus::before,
+    .idx__item.open .idx__plus::after { background: var(--accent); }
+    .idx__panel {
+      overflow: hidden;
+      max-height: 0;
+      /* visibility keeps collapsed links out of tab order & screen readers */
+      visibility: hidden;
+      transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0.5s;
+    }
+    .idx__item.open .idx__panel {
+      visibility: visible;
+      transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
+    }
+    .idx__panel-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 32px;
+      padding: 0 4px 34px 84px;
+    }
+    .idx__desc {
+      max-width: 480px;
+      font-size: 14px;
+      color: var(--ink-dim);
+    }
+    .idx__go {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding: 12px 22px;
+      border: 1px solid var(--line-strong);
+      border-radius: 100px;
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    .idx__go:hover {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+    .idx__go .arr { transition: transform 0.3s ease; }
+    .idx__go:hover .arr { transform: translate(3px, -3px); }
+
+    /* --- Connect --- */
+    .connect__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .connect__card {
+      background: var(--bg);
+      padding: 34px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 42px;
+      transition: background 0.35s ease;
+    }
+    .connect__card:hover { background: var(--bg-soft); }
+    .connect__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .connect__card .k {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+    .connect__icon {
+      width: 20px;
+      height: 20px;
+      color: var(--ink-faint);
+      transition: color 0.35s ease;
+    }
+    .connect__card:hover .connect__icon { color: var(--brand, var(--ink)); }
+    .connect__card .v {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--ink-dim);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: color 0.3s ease;
+    }
+    .connect__card:hover .v { color: var(--ink); }
+    .connect__card .v .arr {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink-faint);
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .connect__card:hover .v .arr { transform: translate(3px, -3px); color: var(--accent); }
+    .connect__body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+    .connect__handle {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--ink-faint);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.3s ease;
+    }
+    .connect__card:hover .connect__handle { color: var(--ink-dim); }
+
+    /* --- Footer --- */
+    .footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--line);
+      padding: 36px 40px;
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+    .footer a { color: var(--ink-dim); transition: color 0.3s ease; }
+    .footer a:hover { color: var(--ink); }
+
+    /* --- Scroll reveal --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal[data-delay="1"] { transition-delay: 0.12s; }
+    .reveal[data-delay="2"] { transition-delay: 0.24s; }
+    .reveal[data-delay="3"] { transition-delay: 0.36s; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 1px solid var(--accent);
       outline-offset: 4px;
     }
+
     @media (prefers-reduced-motion: reduce) {
-      .iUp {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
-      * {
-        animation-duration: 0.001ms !important;
-        transition-duration: 0.05ms !important;
-      }
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .hero__scroll svg { animation: none; }
+      * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
     }
 
     /* --- Responsive --- */
-    @media all and (max-width: 960px) {
-      .panel-main__inner {
-        padding: 60px 8%;
+    @media (max-width: 860px) {
+      .nav { padding: 0 22px; }
+      .nav__toggle { display: block; }
+      .nav__links {
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        transform: none;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(11, 12, 14, 0.94);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--line);
+        display: none;
+        padding: 10px 0 16px;
       }
-      .panel-cover .panel-title {
-        font-size: 3em;
+      .nav__links.open { display: flex; }
+      .nav__links a { padding: 12px 26px; }
+      .hero { padding: 110px 22px 90px; }
+      .hero__scroll { left: 22px; }
+      .section { padding: 80px 22px; }
+      .about__grid { grid-template-columns: 1fr; gap: 44px; }
+      .idx__row { grid-template-columns: 44px 1fr 34px; }
+      .idx__url { display: none; }
+      .idx__panel-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 64px;
+        gap: 22px;
       }
-      .panel-cover #description.panel-cover__description {
-        font-size: 1.4em;
-      }
-
-      /* Top bar: frosted glass to match the cover */
-      .btn-mobile-menu {
-        height: 46px;
-        background: rgba(11, 12, 15, 0.55);
-        -webkit-backdrop-filter: blur(12px) saturate(1.1);
-        backdrop-filter: blur(12px) saturate(1.1);
-        border-bottom: 1px solid rgba(245, 241, 234, 0.12);
-      }
-      .btn-mobile-menu__icon,
-      .btn-mobile-close__icon {
-        top: 14px;
-        color: var(--paper);
-      }
-
-      /* Dropdown menu: dark frosted glass + refined spacing */
-      .navigation-wrapper {
-        padding: 26px 0 30px;
-        background: rgba(10, 11, 14, 0.92);
-        -webkit-backdrop-filter: blur(18px) saturate(1.1);
-        backdrop-filter: blur(18px) saturate(1.1);
-        border-bottom: 1px solid rgba(245, 241, 234, 0.12);
-      }
-      .cover-navigation--primary .navigation__item + .navigation__item a {
-        border-top: 1px solid rgba(245, 241, 234, 0.08);
-      }
-
-      /* Social row: clean centered flex, never clipped at the edge */
-      .cover-navigation.navigation--social .navigation {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        width: 100%;
-        float: none;
-      }
-      .cover-navigation.navigation--social .navigation li {
-        width: auto;
-        display: inline-flex;
-      }
-
-      /* Collapse the glass bar back to a simple stacked menu on mobile */
-      .cover-navigation--primary .navigation {
-        display: block;
-        border: 0;
-        border-radius: 0;
-        background: none;
-        -webkit-backdrop-filter: none;
-        backdrop-filter: none;
-        box-shadow: none;
-        overflow: visible;
-      }
-      .cover-navigation--primary .navigation li,
-      .cover-navigation--primary .navigation__item {
-        display: block;
-        width: 100%;
-        text-align: center;
-      }
-      .cover-navigation--primary .navigation__item + .navigation__item {
-        border-left: 0;
-      }
-      .cover-navigation--primary .navigation__item a {
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
-      }
+      .connect__grid { grid-template-columns: 1fr 1fr; }
+      .footer { padding: 30px 22px; }
     }
-    @media all and (max-width: 480px) {
-      .panel-cover .panel-title {
-        font-size: 2.4em;
-      }
-      .panel-cover .panel-subtitle {
-        font-size: 1.25em;
-      }
+    @media (max-width: 480px) {
+      .connect__grid { grid-template-columns: 1fr; }
+      .idx__panel-inner { padding-left: 4px; }
     }
   </style>
 </head>
 
 <body>
-  <span class="mobile btn-mobile-menu">
-      <i class="social iconfont icon-list btn-mobile-menu__icon"></i>
-      <i class="social iconfont icon-angleup btn-mobile-close__icon hidden"></i>
-  </span>
-  <header id="panel" class="panel-cover">
-    <div class="panel-main">
-      <div class="panel-main__inner panel-inverted">
-        <div class="panel-main__content">
-          <div class="ih-item circle effect right_to_left iUp">
-            <a href="#" title="" class="blog-button">
-              <div class="img"><img src="./img/logo2.jpg" alt="img" class="js-avatar profilepic"></div>
-              <div class="info">
-                <div class="info-back">
-                  <h2>探索</h2>
-                  <p>Venturing</p>
-                </div>
-              </div>
-            </a>
-          </div>
+  <div class="grid-bg" aria-hidden="true"></div>
 
-          <!-- <a href="#" title="Laphel Home" class="profilepic">
-              <img src="./img/logo2.jpg" width="80" alt="Laphel`s logo" class="js-avatar iUp show" />
-          </a> -->
-          <h1 class="panel-cover__title panel-title iUp">
-              <a href="#" title="Laphel Home">Laphel</a>
-          </h1>
-          <p class="panel-cover__subtitle panel-subtitle iUp">Innovation Shapes the Future, Technology Leads the Way.</p>
-          <hr class="panel-cover__divider iUp" />
-          <p id="description" class="panel-cover__description iUp">It is not in the stars to hold our destiny, but in ourselves.
-              <br/>
-          </p>
-          <p id="author" class="panel-cover__description iUp"><strong>William Shakespeare</strong></p>
-          <div class="navigation-wrapper iUp">
-            <div>
-              <nav class="cover-navigation cover-navigation--primary">
-                <ul class="navigation">
-                  <li class="navigation__item">
-                    <a href="" class="blog-button">Home</a>
-                  </li>
-                  <li class="navigation__item">
-                    <a href="https://blog.laphel.com" class="blog-button" target="_blank">Blog</a>
-                  </li>
-                  <li class="navigation__item">
-                    <a href="https://garden.laphel.com" class="blog-button" target="_blank">Garden</a>
-                  </li>
-                  <li class="navigation__item">
-                    <a href="https://about.laphel.com/" class="blog-button" target="_blank">About</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <div class="iUp">
-              <nav class="cover-navigation navigation--social">
-                <ul class="navigation">
-                  <li class="navigation__item">
-                      <a href="https://t.me/hackandart" title="channel" target="_blank">
-                        <!-- <i class='social iconfont icon-zhihu'></i> -->
-                        <i class="social fa fa-telegram"></i>
-                        <span class="label">Telegram</span>
-                      </a>
-                    </li>
-                  <li class="navigation__item">
-                      <a href="https://github.com/turing0" title="github" target="_blank">
-                        <i class='social iconfont icon-github'></i>
-                        <span class="label">GitHub</span>
-                      </a>
-                    </li>
-                    <!-- <li class="navigation__item">
-                        <a href="" title="cnblogs" target="_blank">
-                            <i class='social iconfont icon-cnblogs'></i>
-                            <span class="label">cnblogs</span>
-                        </a>
-                    </li> -->
+  <!-- ================= Nav ================= -->
+  <nav class="nav" id="nav">
+    <a class="nav__logo" href="#top">Laphel</a>
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#top">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#index">Index</a></li>
+      <li><a href="#connect">Connect</a></li>
+      <li><a href="https://blog.laphel.com" target="_blank" rel="noopener">Blog ↗</a></li>
+    </ul>
+  </nav>
 
-                    <li class="navigation__item">
-                      <a href="mailto:mela541dnie@gmail.com" title="email">
-                        <i class='social iconfont icon-email'></i>
-                        <span class="label">Email</span>
-                      </a>
-                    </li>
-                    <li class="navigation__item">
-                      <a href="https://status.laphel.com/" title="status">
-                        <i class='social fa fa-heartbeat'></i>
-                        <span class="label">Status</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
-      <div class="panel-cover--overlay cover-slate"></div>
-    </div>
-    
-    <!-- <div class="beian iUp">
-      <a class="icp" href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank">XXX</a>
-      <a class="gwab" href="http://www.beian.gov.cn/portal/recordQuery" target="_blank">XXX</a>
-    </div> -->
-    
-    <!-- <div class="remark iUp">
-      <p class="power">Powered By 
-        <a href="https://bird.ioliu.cn/" target="_blank"> JsonBird </a> And 
-        <a href="https://hitokoto.cn/" target="_blank"> Hitokoto </a>
-      </p>
-    </div> -->
+  <!-- ================= Hero ================= -->
+  <header class="hero" id="top">
+    <h1 class="reveal">Laphel<span class="dot">.</span></h1>
+    <p class="hero__tagline reveal" data-delay="1">Innovation shapes the future, technology leads the way.</p>
+    <blockquote class="hero__quote reveal" data-delay="2">
+      <p id="quoteText">It is not in the stars to hold our destiny, but in ourselves.</p>
+      <cite id="quoteAuthor">— William Shakespeare</cite>
+    </blockquote>
+    <a class="hero__scroll" href="#about" aria-label="Scroll down">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
   </header>
 
-  <script defer src="./assets/js/jquery.min.js"></script>
-  <script defer src="./assets/js/main.js"></script>
+  <!-- ================= About ================= -->
+  <section class="section" id="about">
+    <div class="section__head reveal">
+      <span class="section__num">01</span>
+      <h2 class="section__title">About</h2>
+    </div>
+    <div class="about__grid">
+      <p class="about__lead reveal" data-delay="1">
+        Builder &amp; explorer.<br>
+        Writing code, growing a digital garden,<br>
+        <em>and keeping things quietly in order.</em>
+      </p>
+      <ul class="about__facts reveal" data-delay="2">
+        <li><span class="k">Focus</span><span>Web · Infra · Crypto</span></li>
+        <li><span class="k">Stack</span><span>Python · Next.js · Web3</span></li>
+        <li><span class="k">Base</span><span>Somewhere on Earth</span></li>
+        <li><span class="k">Status</span><span>Building</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= Index (expandable links) ================= -->
+  <section class="section" id="index">
+    <div class="section__head reveal">
+      <span class="section__num">02</span>
+      <h2 class="section__title">Index</h2>
+    </div>
+    <ul class="idx reveal" data-delay="1">
+
+      <li class="idx__item">
+        <button class="idx__row" aria-expanded="false">
+          <span class="idx__no">/01</span>
+          <span class="idx__name">Blog</span>
+          <span class="idx__url">blog.laphel.com</span>
+          <span class="idx__plus" aria-hidden="true"></span>
+        </button>
+        <div class="idx__panel">
+          <div class="idx__panel-inner">
+            <p class="idx__desc">长文与技术笔记。关于开发、工具与思考的正式写作，按时间归档。</p>
+            <a class="idx__go" href="https://blog.laphel.com" target="_blank" rel="noopener">Visit <span class="arr">↗</span></a>
+          </div>
+        </div>
+      </li>
+
+      <li class="idx__item">
+        <button class="idx__row" aria-expanded="false">
+          <span class="idx__no">/02</span>
+          <span class="idx__name">Garden</span>
+          <span class="idx__url">garden.laphel.com</span>
+          <span class="idx__plus" aria-hidden="true"></span>
+        </button>
+        <div class="idx__panel">
+          <div class="idx__panel-inner">
+            <p class="idx__desc">数字花园。未完成的想法、笔记与知识碎片在这里生长、互相链接。</p>
+            <a class="idx__go" href="https://garden.laphel.com" target="_blank" rel="noopener">Visit <span class="arr">↗</span></a>
+          </div>
+        </div>
+      </li>
+
+      <li class="idx__item">
+        <button class="idx__row" aria-expanded="false">
+          <span class="idx__no">/03</span>
+          <span class="idx__name">About</span>
+          <span class="idx__url">about.laphel.com</span>
+          <span class="idx__plus" aria-hidden="true"></span>
+        </button>
+        <div class="idx__panel">
+          <div class="idx__panel-inner">
+            <p class="idx__desc">关于我 — 正在构建的项目、联系方式，以及更完整的自我介绍。</p>
+            <a class="idx__go" href="https://about.laphel.com/" target="_blank" rel="noopener">Visit <span class="arr">↗</span></a>
+          </div>
+        </div>
+      </li>
+
+      <li class="idx__item">
+        <button class="idx__row" aria-expanded="false">
+          <span class="idx__no">/04</span>
+          <span class="idx__name">Perks</span>
+          <span class="idx__url">/recommend</span>
+          <span class="idx__plus" aria-hidden="true"></span>
+        </button>
+        <div class="idx__panel">
+          <div class="idx__panel-inner">
+            <p class="idx__desc">推荐与好物。值得分享的工具、服务与优惠。</p>
+            <a class="idx__go" href="./recommend/">Visit <span class="arr">→</span></a>
+          </div>
+        </div>
+      </li>
+
+      <li class="idx__item">
+        <button class="idx__row" aria-expanded="false">
+          <span class="idx__no">/05</span>
+          <span class="idx__name">Status</span>
+          <span class="idx__url">status.laphel.com</span>
+          <span class="idx__plus" aria-hidden="true"></span>
+        </button>
+        <div class="idx__panel">
+          <div class="idx__panel-inner">
+            <p class="idx__desc">服务状态监控。各站点的可用性与响应时间，一目了然。</p>
+            <a class="idx__go" href="https://status.laphel.com/" target="_blank" rel="noopener">Visit <span class="arr">↗</span></a>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ================= Connect ================= -->
+  <section class="section" id="connect">
+    <div class="section__head reveal">
+      <span class="section__num">03</span>
+      <h2 class="section__title">Connect</h2>
+    </div>
+    <div class="connect__grid reveal" data-delay="1">
+      <a class="connect__card" style="--brand:#26A5E4" href="https://t.me/hackandart" target="_blank" rel="noopener">
+        <span class="connect__head">
+          <span class="k">Channel</span>
+          <svg class="connect__icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        </span>
+        <span class="connect__body">
+          <span class="v">Telegram <span class="arr">↗</span></span>
+          <span class="connect__handle">@hackandart</span>
+        </span>
+      </a>
+      <a class="connect__card" style="--brand:#e8eaed" href="https://github.com/turing0" target="_blank" rel="noopener">
+        <span class="connect__head">
+          <span class="k">Code</span>
+          <svg class="connect__icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </span>
+        <span class="connect__body">
+          <span class="v">GitHub <span class="arr">↗</span></span>
+          <span class="connect__handle">@turing0</span>
+        </span>
+      </a>
+      <a class="connect__card" style="--brand:#EA4335" href="mailto:mela541dnie@gmail.com">
+        <span class="connect__head">
+          <span class="k">Mail</span>
+          <svg class="connect__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 7.5l9 6 9-6"/></svg>
+        </span>
+        <span class="connect__body">
+          <span class="v">Email <span class="arr">↗</span></span>
+          <span class="connect__handle">mela541dnie@gmail.com</span>
+        </span>
+      </a>
+      <a class="connect__card" style="--brand:#34d399" href="https://status.laphel.com/" target="_blank" rel="noopener">
+        <span class="connect__head">
+          <span class="k">Uptime</span>
+          <svg class="connect__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 12h4.2l2.3-6 4.5 12 2.3-6h5.7"/></svg>
+        </span>
+        <span class="connect__body">
+          <span class="v">Status <span class="arr">↗</span></span>
+          <span class="connect__handle">status.laphel.com</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= Footer ================= -->
+  <footer class="footer">
+    <span>© <span id="year"></span> Laphel</span>
+    <span><a href="#top">Back to top ↑</a></span>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Nav: frosted background after scroll
+    var nav = document.getElementById('nav');
+    var onScroll = function () {
+      nav.classList.toggle('scrolled', window.scrollY > 24);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Mobile menu
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    toggle.addEventListener('click', function () {
+      var open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+    links.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Scroll reveal
+    var reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+      reveals.forEach(function (el) { io.observe(el); });
+    } else {
+      reveals.forEach(function (el) { el.classList.add('in'); });
+    }
+
+    // Random quote (65% English stoic, else Chinese hitokoto), typewriter effect
+    (function () {
+      var qEl = document.getElementById('quoteText');
+      var aEl = document.getElementById('quoteAuthor');
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function showQuote(text, author, speed) {
+        aEl.textContent = '— ' + author;
+        if (reduced) { qEl.textContent = text; return; }
+        qEl.textContent = '';
+        var i = 0;
+        var timer = setInterval(function () {
+          if (i < text.length) {
+            qEl.textContent += text.charAt(i);
+            i++;
+          } else {
+            clearInterval(timer);
+          }
+        }, speed || 50);
+      }
+
+      if (Math.random() < 0.65) {
+        fetch('https://api.allorigins.win/get?url=' +
+            encodeURIComponent('https://stoic.tekloon.net/stoic-quote') +
+            '&_=' + Date.now())
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            data = JSON.parse(data.contents).data;
+            if (data && data.quote) showQuote(data.quote, data.author, 50);
+          })
+          .catch(function () { /* keep the Shakespeare fallback */ });
+      } else {
+        fetch('https://v1.hitokoto.cn')
+          .then(function (res) { return res.json(); })
+          .then(function (e) {
+            if (e && e.hitokoto) showQuote(e.hitokoto, '「' + e.from + '」', 100);
+          })
+          .catch(function () { /* keep the Shakespeare fallback */ });
+      }
+    })();
+
+    // Expandable index rows (accordion, one open at a time)
+    var items = document.querySelectorAll('.idx__item');
+    items.forEach(function (item) {
+      var row = item.querySelector('.idx__row');
+      var panel = item.querySelector('.idx__panel');
+      row.addEventListener('click', function () {
+        var isOpen = item.classList.contains('open');
+        items.forEach(function (other) {
+          other.classList.remove('open');
+          other.querySelector('.idx__panel').style.maxHeight = null;
+          other.querySelector('.idx__row').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          row.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    // Keep open panel height correct on resize
+    window.addEventListener('resize', function () {
+      var open = document.querySelector('.idx__item.open .idx__panel');
+      if (open) open.style.maxHeight = open.scrollHeight + 'px';
+    });
+  </script>
 </body>
 
 </html>

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Laphel 的推荐清单 — 加密货币交易所、美国券商与信用卡注册奖励">
+  <meta name="author" content="Laphel">
+  <link rel="canonical" href="https://laphel.com/recommend/">
+  <meta property="og:title" content="Perks · Laphel"/>
+  <meta property="og:description" content="我在用并且推荐的服务：注册即得奖励"/>
+  <meta property="og:url" content="https://laphel.com/recommend/"/>
+  <meta property="og:site_name" content="Laphel"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://laphel.com/og.png"/>
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0b0c0e">
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Perks · Laphel"/>
+  <meta name="twitter:description" content="我在用并且推荐的服务：注册即得奖励"/>
+  <meta name="twitter:image" content="https://laphel.com/og.png"/>
+  <title>Perks · Laphel</title>
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="icon" href="../favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap">
+
+  <style>
+    /* ==================================================================
+       Perks — quiet-tech, same system as the Laphel index page
+       Palette: near-black #0b0c0e · fog gray #9aa0a6 · paper #e8eaed
+       Type: Space Grotesk (display) · JetBrains Mono (micro labels)
+       ================================================================== */
+
+    :root {
+      --bg: #0b0c0e;
+      --bg-soft: #101215;
+      --line: rgba(232, 234, 237, 0.10);
+      --line-strong: rgba(232, 234, 237, 0.22);
+      --ink: #e8eaed;
+      --ink-dim: #9aa0a6;
+      --ink-faint: #5f6368;
+      --accent: #aab4c4;
+      --sans: "Space Grotesk", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+      --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: rgba(170, 180, 196, 0.25); color: var(--ink); }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* --- Fixed hairline grid backdrop --- */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right, var(--line) 1px, transparent 1px);
+      background-size: 25% 100%;
+      background-position: 0 0;
+      opacity: 0.5;
+    }
+    .grid-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(90% 60% at 50% 0%, rgba(170, 180, 196, 0.06) 0%, transparent 70%);
+    }
+
+    /* ================= Navigation ================= */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      border-bottom: 1px solid transparent;
+      transition: background 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
+    }
+    .nav.scrolled {
+      background: rgba(11, 12, 14, 0.72);
+      -webkit-backdrop-filter: blur(14px) saturate(1.1);
+      backdrop-filter: blur(14px) saturate(1.1);
+      border-bottom-color: var(--line);
+    }
+    .nav__logo {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .nav__links {
+      display: flex;
+      gap: 4px;
+      list-style: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav__links a {
+      display: block;
+      padding: 8px 14px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      transition: color 0.3s ease;
+    }
+    .nav__links a:hover { color: var(--ink); }
+    .nav__toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--line-strong);
+      color: var(--ink-dim);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      cursor: pointer;
+    }
+
+    /* ================= Hero ================= */
+    .hero {
+      position: relative;
+      z-index: 1;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 190px 40px 90px;
+    }
+    .hero h1 {
+      font-size: clamp(48px, 9vw, 104px);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 .dot { color: var(--accent); }
+    .hero__sub {
+      margin-top: 28px;
+      max-width: 460px;
+      font-size: 16px;
+      color: var(--ink-dim);
+    }
+    .hero__note {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+    .hero__note::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.7;
+    }
+
+    /* ================= Sections ================= */
+    .section {
+      position: relative;
+      z-index: 1;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 80px 40px;
+      border-top: 1px solid var(--line);
+    }
+    .section__head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 22px;
+      margin-bottom: 46px;
+    }
+    .section__head-left {
+      display: flex;
+      align-items: baseline;
+      gap: 22px;
+    }
+    .section__num {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--ink-faint);
+    }
+    .section__title {
+      font-size: clamp(24px, 3.4vw, 34px);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+    }
+    .section__tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    /* --- Referral cards --- */
+    .cards {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding: 30px 28px 26px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.012);
+      transition: border-color 0.35s ease, background 0.35s ease, transform 0.35s ease;
+    }
+    a.card:hover {
+      border-color: var(--line-strong);
+      background: var(--bg-soft);
+      transform: translateY(-4px);
+    }
+    .card__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .card__logo {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--line-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-dim);
+      transition: color 0.35s ease, border-color 0.35s ease;
+    }
+    .card__logo svg { width: 24px; height: 24px; fill: currentColor; }
+    .card__logo .mono-mark {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    a.card:hover .card__logo {
+      color: var(--brand, var(--ink));
+      border-color: var(--line-strong);
+    }
+    .card__arr {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink-dim);
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    }
+    a.card:hover .card__arr {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+      transform: translate(2px, -2px);
+    }
+    .card__name {
+      flex: 1;
+      min-width: 0;
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      line-height: 1.3;
+      color: var(--ink);
+      transition: color 0.3s ease;
+    }
+    a.card:hover .card__name { color: var(--accent); }
+    .card__desc {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--ink-faint);
+    }
+    .card__foot {
+      margin-top: auto;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .card__bonus {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      transition: color 0.3s ease;
+    }
+    a.card:hover .card__bonus { color: var(--ink); }
+    .card__cta {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    /* Coming soon card */
+    .card--soon { border-style: dashed; cursor: default; }
+    .card--soon .card__logo { border-style: dashed; color: var(--ink-faint); }
+    .card--soon .card__name { color: var(--ink-faint); }
+    .card--soon .card__arr { border-style: dashed; color: var(--ink-faint); }
+    .card--soon .card__bonus { color: var(--ink-faint); }
+
+    /* --- Disclaimer --- */
+    .disclaim {
+      position: relative;
+      z-index: 1;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 60px 40px 0;
+      border-top: 1px solid var(--line);
+    }
+    .disclaim p {
+      max-width: 560px;
+      font-size: 13px;
+      color: var(--ink-faint);
+    }
+
+    /* --- Footer --- */
+    .footer {
+      position: relative;
+      z-index: 1;
+      padding: 36px 40px;
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+    .footer a { color: var(--ink-dim); transition: color 0.3s ease; }
+    .footer a:hover { color: var(--ink); }
+
+    /* --- Scroll reveal --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal[data-delay="1"] { transition-delay: 0.12s; }
+    .reveal[data-delay="2"] { transition-delay: 0.24s; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 1px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 860px) {
+      .nav { padding: 0 22px; }
+      .nav__toggle { display: block; }
+      .nav__links {
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        transform: none;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(11, 12, 14, 0.94);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--line);
+        display: none;
+        padding: 10px 0 16px;
+      }
+      .nav__links.open { display: flex; }
+      .nav__links a { padding: 12px 26px; }
+      .hero { padding: 150px 22px 70px; }
+      .section { padding: 64px 22px; }
+      .disclaim { padding: 48px 22px 0; }
+      .footer { padding: 30px 22px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <!-- ================= Nav ================= -->
+  <nav class="nav" id="nav">
+    <a class="nav__logo" href="../">Laphel</a>
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="../">Home</a></li>
+      <li><a href="https://blog.laphel.com" target="_blank" rel="noopener">Blog ↗</a></li>
+      <li><a href="https://garden.laphel.com" target="_blank" rel="noopener">Garden ↗</a></li>
+      <li><a href="https://about.laphel.com/" target="_blank" rel="noopener">About ↗</a></li>
+    </ul>
+  </nav>
+
+  <!-- ================= Hero ================= -->
+  <header class="hero">
+    <h1 class="reveal">Perks<span class="dot">.</span></h1>
+    <p class="hero__sub reveal" data-delay="1">我自己在用、也值得你一试的服务。经由此页注册，通常可获得额外奖励。</p>
+    <p class="hero__note reveal" data-delay="2">Referral — 持续更新</p>
+  </header>
+
+  <!-- ================= Crypto ================= -->
+  <section class="section">
+    <div class="section__head reveal">
+      <div class="section__head-left">
+        <span class="section__num">01</span>
+        <h2 class="section__title">加密货币</h2>
+      </div>
+      <span class="section__tag">Crypto</span>
+    </div>
+    <ul class="cards reveal" data-delay="1">
+      <li>
+        <a class="card" style="--brand:#F0B90B" href="https://www.bsmkweb.cc/referral/earn-together/refer2earn-usdc/claim?hl=zh-CN&ref=GRO_28502_ZO0GP" target="_blank" rel="sponsored noopener">
+          <span class="card__top">
+            <span class="card__logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.624 13.9202l2.7175 2.7154-7.353 7.353-7.353-7.352 2.7175-2.7164 4.6355 4.6595 4.6356-4.6595zm4.6366-4.6366L24 12l-2.7154 2.7164L18.5682 12l2.6924-2.7164zm-9.272.001l2.7163 2.6914-2.7164 2.7174v-.001L9.2721 12l2.7164-2.7154zm-9.2722-.001L5.4088 12l-2.6914 2.6924L0 12l2.7164-2.7164zM11.9885.0115l7.353 7.329-2.7174 2.7154-4.6356-4.6356-4.6355 4.6595-2.7174-2.7154 7.353-7.353z"/></svg>
+            </span>
+            <span class="card__name">Binance 币安</span>
+            <span class="card__arr" aria-hidden="true">↗</span>
+          </span>
+          <span class="card__desc">全球交易量最大的交易所，现货 / 合约 / 理财一站式</span>
+          <span class="card__foot">
+            <span class="card__bonus">新人礼包 + 返佣</span>
+            <span class="card__cta">Register</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="card" style="--brand:#F7A600" href="https://partner.bybit.com/b/91415" target="_blank" rel="sponsored noopener">
+          <span class="card__top">
+            <span class="card__logo" aria-hidden="true"><span class="mono-mark">By</span></span>
+            <span class="card__name">Bybit</span>
+            <span class="card__arr" aria-hidden="true">↗</span>
+          </span>
+          <span class="card__desc">主流衍生品交易所，合约体验与深度出色</span>
+          <span class="card__foot">
+            <span class="card__bonus">新人任务奖励</span>
+            <span class="card__cta">Register</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="card" style="--brand:#7132F5" href="https://invite.kraken.com/JDNW/3i8wm40z" target="_blank" rel="sponsored noopener">
+          <span class="card__top">
+            <span class="card__logo" aria-hidden="true"><span class="mono-mark">K</span></span>
+            <span class="card__name">Kraken</span>
+            <span class="card__arr" aria-hidden="true">↗</span>
+          </span>
+          <span class="card__desc">老牌美国交易所，安全与合规口碑常年在线</span>
+          <span class="card__foot">
+            <span class="card__bonus">邀请注册奖励</span>
+            <span class="card__cta">Register</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ================= Brokerage ================= -->
+  <section class="section">
+    <div class="section__head reveal">
+      <div class="section__head-left">
+        <span class="section__num">02</span>
+        <h2 class="section__title">美国券商</h2>
+      </div>
+      <span class="section__tag">Brokerage</span>
+    </div>
+    <ul class="cards reveal" data-delay="1">
+      <li>
+        <a class="card" style="--brand:#009FDB" href="https://www.schwab.com/client-referral?refrid=REFERAVQHF3KM" target="_blank" rel="sponsored noopener">
+          <span class="card__top">
+            <span class="card__logo" aria-hidden="true"><span class="mono-mark">Sc</span></span>
+            <span class="card__name">Charles Schwab 嘉信理财</span>
+            <span class="card__arr" aria-hidden="true">↗</span>
+          </span>
+          <span class="card__desc">证券 + 支票账户，Debit 卡全球 ATM 手续费全返</span>
+          <span class="card__foot">
+            <span class="card__bonus">推荐开户奖励</span>
+            <span class="card__cta">Register</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ================= Credit Cards ================= -->
+  <section class="section">
+    <div class="section__head reveal">
+      <div class="section__head-left">
+        <span class="section__num">03</span>
+        <h2 class="section__title">美国信用卡</h2>
+      </div>
+      <span class="section__tag">Credit Cards</span>
+    </div>
+    <ul class="cards reveal" data-delay="1">
+      <li>
+        <a class="card" style="--brand:#2E77BC" href="https://americanexpress.com/en-us/referral/hilton-honors?ref=XIAOYT1lyv&XL=MIMNS" target="_blank" rel="sponsored noopener">
+          <span class="card__top">
+            <span class="card__logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.015 14.378c0-.32-.135-.496-.344-.622-.21-.12-.464-.135-.81-.135h-1.543v2.82h.675v-1.027h.72c.24 0 .39.024.478.125.12.13.104.38.104.55v.35h.66v-.555c-.002-.25-.017-.376-.108-.516-.06-.08-.18-.18-.33-.234l.02-.008c.18-.072.48-.297.48-.747zm-.87.407l-.028-.002c-.09.053-.195.058-.33.058h-.81v-.63h.824c.12 0 .24 0 .33.05.098.048.156.147.15.255 0 .12-.045.215-.134.27zM20.297 15.837H19v.6h1.304c.676 0 1.05-.278 1.05-.884 0-.28-.066-.448-.187-.582-.153-.133-.392-.193-.73-.207l-.376-.015c-.104 0-.18 0-.255-.03-.09-.03-.15-.105-.15-.21 0-.09.017-.166.09-.21.083-.046.177-.066.272-.06h1.23v-.602h-1.35c-.704 0-.958.437-.958.84 0 .9.776.855 1.407.87.104 0 .18.015.225.06.046.03.082.106.082.18 0 .077-.035.15-.08.18-.06.053-.15.07-.277.07zM0 0v10.096L.81 8.22h1.75l.225.464V8.22h2.043l.45 1.02.437-1.013h6.502c.295 0 .56.057.756.236v-.23h1.787v.23c.307-.17.686-.23 1.12-.23h2.606l.24.466v-.466h1.918l.254.465v-.466h1.858v3.948H20.87l-.36-.6v.585h-2.353l-.256-.63h-.583l-.27.614h-1.213c-.48 0-.84-.104-1.08-.24v.24h-2.89v-.884c0-.12-.03-.12-.105-.135h-.105v1.036H6.067v-.48l-.21.48H4.69l-.202-.48v.465H2.235l-.256-.624H1.4l-.256.624H0V24h23.786v-7.108c-.27.135-.613.18-.973.18H21.09v-.255c-.21.165-.57.255-.914.255H14.71v-.9c0-.12-.018-.12-.12-.12h-.075v1.022h-1.8v-1.066c-.298.136-.643.15-.928.136h-.214v.915h-2.18l-.54-.617-.57.6H4.742v-3.93h3.61l.518.602.554-.6h2.412c.28 0 .74.03.942.225v-.24h2.177c.202 0 .644.045.903.225v-.24h3.265v.24c.163-.164.508-.24.803-.24h1.89v.24c.194-.15.464-.24.84-.24h1.176V0H0zM21.156 14.955c.004.005.006.012.01.016.01.01.024.01.032.02l-.042-.035zM23.828 13.082h.065v.555h-.065zM23.865 15.03v-.005c-.03-.025-.046-.048-.075-.07-.15-.153-.39-.215-.764-.225l-.36-.012c-.12 0-.194-.007-.27-.03-.09-.03-.15-.105-.15-.21 0-.09.03-.16.09-.204.076-.045.15-.05.27-.05h1.223v-.588h-1.283c-.69 0-.96.437-.96.84 0 .9.78.855 1.41.87.104 0 .18.015.224.06.046.03.076.106.076.18 0 .07-.034.138-.09.18-.045.056-.136.07-.27.07h-1.288v.605h1.287c.42 0 .734-.118.9-.36h.03c.09-.134.135-.3.135-.523 0-.24-.045-.39-.135-.526zM18.597 14.208v-.583h-2.235V16.458h2.235v-.585h-1.57v-.57h1.533v-.584h-1.532v-.51M13.51 8.787h.685V11.6h-.684zM13.126 9.543l-.007.006c0-.314-.13-.5-.34-.624-.217-.125-.47-.135-.81-.135H10.43v2.82h.674v-1.034h.72c.24 0 .39.03.487.12.122.136.107.378.107.548v.354h.677v-.553c0-.25-.016-.375-.11-.516-.09-.107-.202-.19-.33-.237.172-.07.472-.3.472-.75zm-.855.396h-.015c-.09.054-.195.056-.33.056H11.1v-.623h.825c.12 0 .24.004.33.05.09.04.15.128.15.25s-.047.22-.134.266zM15.92 9.373h.632v-.6h-.644c-.464 0-.804.105-1.02.33-.286.3-.362.69-.362 1.11 0 .512.123.833.36 1.074.232.238.645.31.97.31h.78l.255-.627h1.39l.262.627h1.36v-2.11l1.272 2.11h.95l.002.002V8.786h-.684v1.963l-1.18-1.96h-1.02V11.4L18.11 8.744h-1.004l-.943 2.22h-.3c-.177 0-.362-.03-.468-.134-.125-.15-.186-.36-.186-.662 0-.285.08-.51.194-.63.133-.135.272-.165.516-.165zm1.668-.108l.464 1.118v.002h-.93l.466-1.12zM2.38 10.97l.254.628H4V9.393l.972 2.205h.584l.973-2.202.015 2.202h.69v-2.81H6.118l-.807 1.904-.876-1.905H3.343v2.663L2.205 8.787h-.997L.01 11.597h.72l.26-.626h1.39zm-.688-1.705l.46 1.118-.003.002h-.915l.457-1.12zM11.856 13.62H9.714l-.85.923-.825-.922H5.346v2.82H8l.855-.932.824.93h1.302v-.94h.838c.6 0 1.17-.164 1.17-.945l-.006-.003c0-.78-.598-.93-1.128-.93zM7.67 15.853l-.014-.002H6.02v-.557h1.47v-.574H6.02v-.51H7.7l.733.82-.764.824zm2.642.33l-1.03-1.147 1.03-1.108v2.253zm1.553-1.258h-.885v-.717h.885c.24 0 .42.098.42.344 0 .243-.15.372-.42.372zM9.967 9.373v-.586H7.73V11.6h2.237v-.58H8.4v-.564h1.527V9.88H8.4v-.507"/></svg>
+            </span>
+            <span class="card__name">Hilton Honors Amex</span>
+            <span class="card__arr" aria-hidden="true">↗</span>
+          </span>
+          <span class="card__desc">美国运通希尔顿联名卡，无年费，住希尔顿系酒店高倍积分</span>
+          <span class="card__foot">
+            <span class="card__bonus">开卡奖励积分</span>
+            <span class="card__cta">Apply</span>
+          </span>
+        </a>
+      </li>
+      <!-- <li>
+        <div class="card card--soon">
+          <span class="card__top">
+            <span class="card__logo" aria-hidden="true"><span class="mono-mark">+</span></span>
+            <span class="card__name">更多整理中</span>
+            <span class="card__arr" aria-hidden="true">···</span>
+          </span>
+          <span class="card__desc">值得开的卡在筛选，宁缺毋滥</span>
+          <span class="card__foot">
+            <span class="card__bonus">Coming soon</span>
+          </span>
+        </div>
+      </li> -->
+    </ul>
+  </section>
+
+  <!-- ================= Disclaimer ================= -->
+  <!-- <div class="disclaim reveal">
+    <p>以上均为本人邀请链接（referral）。奖励规则以各平台当前活动为准，可能随时调整；投资有风险，入场需谨慎。</p>
+  </div> -->
+
+  <!-- ================= Footer ================= -->
+  <footer class="footer">
+    <span>© <span id="year"></span> Laphel</span>
+    <span><a href="../">laphel.com ↗</a></span>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Nav: frosted background after scroll
+    var nav = document.getElementById('nav');
+    var onScroll = function () {
+      nav.classList.toggle('scrolled', window.scrollY > 24);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Mobile menu
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    toggle.addEventListener('click', function () {
+      var open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+    links.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Scroll reveal
+    var reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+      reveals.forEach(function (el) { io.observe(el); });
+    } else {
+      reveals.forEach(function (el) { el.classList.add('in'); });
+    }
+  </script>
+</body>
+
+</html>

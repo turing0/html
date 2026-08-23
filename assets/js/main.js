@@ -144,7 +144,11 @@ $(document).ready(function () {
 	// $panel.css("background", "url('"+url+"') center center no-repeat #666");
 	if ($('#panel')) {
 		var $panel = $('#panel');
-		$panel.css("background", `url('${url}') center center no-repeat #666`);
+		// Layer the wallpaper ON TOP of the premium CSS fallback gradient so the
+		// dark gradient (not a flat grey) shows while the image is still loading.
+		$panel.css("background-image", `url('${url}'), var(--cover-fallback, none)`);
+		$panel.css("background-position", "center center");
+		$panel.css("background-repeat", "no-repeat");
 		$panel.css("background-size", "cover");
 	}
 
