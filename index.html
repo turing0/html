@@ -436,7 +436,7 @@
     /* --- Connect --- */
     .connect__grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1px;
       background: var(--line);
       border: 1px solid var(--line);
@@ -527,6 +527,14 @@
     }
     .footer a { color: var(--ink-dim); transition: color 0.3s ease; }
     .footer a:hover { color: var(--ink); }
+    .footer__status { display: inline-flex; align-items: center; gap: 8px; }
+    .footer__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
+    }
 
     /* --- Scroll reveal --- */
     .reveal {
@@ -687,21 +695,6 @@
       <li class="idx__item">
         <button class="idx__row" aria-expanded="false">
           <span class="idx__no">/03</span>
-          <span class="idx__name">About</span>
-          <span class="idx__url">about.laphel.com</span>
-          <span class="idx__plus" aria-hidden="true"></span>
-        </button>
-        <div class="idx__panel">
-          <div class="idx__panel-inner">
-            <p class="idx__desc">关于我 — 正在构建的项目、联系方式，以及更完整的自我介绍。</p>
-            <a class="idx__go" href="https://about.laphel.com/" target="_blank" rel="noopener">Visit <span class="arr">↗</span></a>
-          </div>
-        </div>
-      </li>
-
-      <li class="idx__item">
-        <button class="idx__row" aria-expanded="false">
-          <span class="idx__no">/04</span>
           <span class="idx__name">Perks</span>
           <span class="idx__url">/perks</span>
           <span class="idx__plus" aria-hidden="true"></span>
@@ -716,15 +709,15 @@
 
       <li class="idx__item">
         <button class="idx__row" aria-expanded="false">
-          <span class="idx__no">/05</span>
-          <span class="idx__name">Status</span>
-          <span class="idx__url">status.laphel.com</span>
+          <span class="idx__no">/04</span>
+          <span class="idx__name">About</span>
+          <span class="idx__url">about.laphel.com</span>
           <span class="idx__plus" aria-hidden="true"></span>
         </button>
         <div class="idx__panel">
           <div class="idx__panel-inner">
-            <p class="idx__desc">服务状态监控。各站点的可用性与响应时间，一目了然。</p>
-            <a class="idx__go" href="https://status.laphel.com/" target="_blank" rel="noopener">Visit <span class="arr">↗</span></a>
+            <p class="idx__desc">关于我 — 正在构建的项目、联系方式，以及更完整的自我介绍。</p>
+            <a class="idx__go" href="https://about.laphel.com/" target="_blank" rel="noopener">Visit <span class="arr">↗</span></a>
           </div>
         </div>
       </li>
@@ -769,23 +762,13 @@
           <span class="connect__handle">mela541dnie@gmail.com</span>
         </span>
       </a>
-      <a class="connect__card" style="--brand:#34d399" href="https://status.laphel.com/" target="_blank" rel="noopener">
-        <span class="connect__head">
-          <span class="k">Uptime</span>
-          <svg class="connect__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 12h4.2l2.3-6 4.5 12 2.3-6h5.7"/></svg>
-        </span>
-        <span class="connect__body">
-          <span class="v">Status <span class="arr">↗</span></span>
-          <span class="connect__handle">status.laphel.com</span>
-        </span>
-      </a>
     </div>
   </section>
 
   <!-- ================= Footer ================= -->
   <footer class="footer">
     <span>© <span id="year"></span> Laphel</span>
-    <span><a href="#top">Back to top ↑</a></span>
+    <a class="footer__status" href="https://status.laphel.com/" target="_blank" rel="noopener"><span class="footer__dot" aria-hidden="true"></span>Status</a>
   </footer>
 
   <script>
