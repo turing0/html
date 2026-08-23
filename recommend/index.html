@@ -65,22 +65,12 @@
 
     a { color: inherit; text-decoration: none; }
 
-    /* --- Fixed hairline grid backdrop --- */
+    /* --- Fixed backdrop: soft top glow only (no grid lines on this page) --- */
     .grid-bg {
       position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      background-image:
-        linear-gradient(to right, var(--line) 1px, transparent 1px);
-      background-size: 25% 100%;
-      background-position: 0 0;
-      opacity: 0.5;
-    }
-    .grid-bg::after {
-      content: "";
-      position: absolute;
-      inset: 0;
       background: radial-gradient(90% 60% at 50% 0%, rgba(170, 180, 196, 0.06) 0%, transparent 70%);
     }
 
@@ -164,7 +154,7 @@
       color: var(--ink-dim);
     }
     .hero__note {
-      margin-top: 18px;
+      margin: 0 0 26px;
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -173,6 +163,22 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--ink-faint);
+    }
+    /* Giant outlined ghost wordmark floating behind the hero */
+    .hero__ghost {
+      position: absolute;
+      right: 12px;
+      top: 120px;
+      z-index: 0;
+      font-size: clamp(140px, 24vw, 280px);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(232, 234, 237, 0.07);
+      pointer-events: none;
+      user-select: none;
     }
     .hero__note::before {
       content: "";
@@ -183,36 +189,46 @@
       opacity: 0.7;
     }
 
-    /* ================= Category filters ================= */
+    /* ================= Category tabs (editorial underline) ================= */
     .filters {
       position: relative;
       z-index: 1;
       max-width: 1160px;
       margin: 0 auto;
-      padding: 0 40px 44px;
+      padding: 0 40px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      gap: 6px;
+      border-bottom: 1px solid var(--line);
     }
     .filter-btn {
+      position: relative;
       font-family: var(--mono);
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--ink-dim);
+      color: var(--ink-faint);
       background: none;
-      border: 1px solid var(--line-strong);
-      border-radius: 100px;
-      padding: 10px 22px;
+      border: 0;
+      padding: 16px 16px 18px;
       cursor: pointer;
-      transition: color 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+      white-space: nowrap;
+      transition: color 0.3s ease;
     }
-    .filter-btn:hover { color: var(--ink); }
-    .filter-btn.active {
+    .filter-btn::after {
+      content: "";
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: -1px;
+      height: 1px;
       background: var(--ink);
-      color: var(--bg);
-      border-color: var(--ink);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
+    .filter-btn:hover { color: var(--ink-dim); }
+    .filter-btn.active { color: var(--ink); }
+    .filter-btn.active::after { transform: scaleX(1); }
 
     /* ================= Sections ================= */
     .section {
@@ -221,25 +237,32 @@
       max-width: 1160px;
       margin: 0 auto;
       padding: 80px 40px;
-      border-top: 1px solid var(--line);
     }
     .section__head {
       display: flex;
       align-items: baseline;
-      justify-content: space-between;
       gap: 22px;
       margin-bottom: 46px;
+    }
+    .section__line {
+      flex: 1;
+      height: 1px;
+      align-self: center;
+      background: linear-gradient(to right, var(--line-strong), var(--line));
     }
     .section__head-left {
       display: flex;
       align-items: baseline;
       gap: 22px;
     }
+    /* Oversized outlined section numerals */
     .section__num {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      color: var(--ink-faint);
+      font-family: var(--sans);
+      font-size: 46px;
+      font-weight: 300;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(232, 234, 237, 0.25);
     }
     .section__title {
       font-size: clamp(24px, 3.4vw, 34px);
@@ -263,6 +286,7 @@
     }
     .card {
       position: relative;
+      height: 100%;
       display: flex;
       flex-direction: column;
       gap: 18px;
@@ -280,16 +304,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      min-height: 44px;
     }
     .card__logo {
-      height: 36px;
+      height: 42px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--ink);
     }
-    .card__logo svg { width: 32px; height: 32px; fill: currentColor; }
-    .card__logo img { width: 36px; height: 36px; display: block; }
+    .card__logo svg { width: 42px; height: 42px; fill: currentColor; }
+    .card__logo img { width: 42px; height: 42px; display: block; }
     /* Full wordmark logos (name included) replace icon + text in the top row */
     .card__wordmark {
       height: 24px;
@@ -304,8 +329,9 @@
       letter-spacing: 0;
     }
     .card__name {
+      text-align: center;
       font-size: 20px;
-      font-weight: 300;
+      font-weight: 500;
       letter-spacing: 0.01em;
       line-height: 1.3;
       color: var(--ink);
@@ -313,10 +339,12 @@
     }
     a.card:hover .card__name { color: var(--accent); }
     .card__desc {
-      margin-top: -6px;
-      font-size: 13px;
+      margin: -8px auto 0;
+      max-width: 26em;
+      text-align: center;
+      font-size: 13.5px;
       line-height: 1.7;
-      color: var(--ink-faint);
+      color: var(--ink-dim);
     }
     /* CTA button (decorative — the whole card is the link) */
     .card__go {
@@ -427,7 +455,16 @@
       .nav__links.open { display: flex; }
       .nav__links a { padding: 12px 26px; }
       .hero { padding: 150px 22px 40px; }
-      .filters { padding: 0 22px 36px; }
+      .filters {
+        padding: 0 22px;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .filters::-webkit-scrollbar { display: none; }
+      .hero__ghost { display: none; }
+      .section__num { font-size: 34px; }
       .section { padding: 64px 22px; }
       .disclaim { padding: 48px 22px 0; }
       .footer { padding: 30px 22px; }
@@ -452,6 +489,7 @@
 
   <!-- ================= Hero ================= -->
   <header class="hero">
+    <span class="hero__ghost" aria-hidden="true">Perks</span>
     <h1 class="reveal">Perks</h1>
     <p class="hero__sub reveal" data-delay="1">我自己在用、也值得你一试的服务。经由此页注册，通常可获得额外奖励。</p>
     <!-- <p class="hero__note reveal" data-delay="2">Referral — 持续更新</p> -->
@@ -461,7 +499,7 @@
   <div class="filters reveal" role="group" aria-label="分类筛选">
     <button class="filter-btn active" data-cat="all">全部</button>
     <button class="filter-btn" data-cat="crypto">加密货币</button>
-    <button class="filter-btn" data-cat="brokerage">美国券商</button>
+    <button class="filter-btn" data-cat="brokerage">美股券商</button>
     <button class="filter-btn" data-cat="cards">美国信用卡</button>
     <button class="filter-btn" data-cat="fintech">跨境金融</button>
   </div>
@@ -473,19 +511,10 @@
         <span class="section__num">01</span>
         <h2 class="section__title">加密货币</h2>
       </div>
+      <span class="section__line" aria-hidden="true"></span>
       <span class="section__tag">Crypto</span>
     </div>
     <ul class="cards reveal" data-delay="1">
-      <li>
-        <a class="card" style="--brand:#F0B90B" aria-label="Binance 币安" href="https://www.bsmkweb.cc/referral/earn-together/refer2earn-usdc/claim?hl=zh-CN&ref=GRO_28502_ZO0GP" target="_blank" rel="sponsored noopener">
-          <span class="card__top">
-            <svg class="card__wordmark" viewBox="2 16 437 88" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21.8484 59.9972L11.9199 69.9349L2 59.9972L11.9199 50.0596L21.8484 59.9972ZM45.9188 35.8667L62.9183 52.9051L72.8382 42.9674L45.9188 16L18.9995 42.9674L28.9194 52.9051L45.9188 35.8667ZM79.9263 50.0596L70.0064 59.9972L79.9263 69.9349L89.8376 59.9972L79.9263 50.0596ZM45.9188 84.1278L28.9194 67.098L18.9995 77.0271L45.9188 103.994L72.8382 77.0271L62.9183 67.098L45.9188 84.1278ZM45.9188 69.9349L55.8387 59.9972L45.9188 50.0596L35.9989 59.9972L45.9188 69.9349ZM150.61 70.8891V70.7516C150.61 64.2697 147.178 61.0288 141.591 58.8969C145.024 56.9627 147.924 53.9281 147.924 48.4864V48.3489C147.924 40.7667 141.866 35.8667 132.023 35.8667H109.677V84.1278H132.589C143.462 84.1278 150.627 79.7178 150.627 70.8891H150.61ZM137.395 50.2573C137.395 53.8421 134.434 55.3637 129.758 55.3637H120.001V45.1768H130.461C134.932 45.1768 137.412 46.9648 137.412 50.137L137.395 50.2573ZM140.081 69.5652C140.081 73.15 137.258 74.8005 132.572 74.8005H120.001V64.201H132.246C137.687 64.201 140.098 66.204 140.098 69.4449L140.081 69.5652ZM172.878 84.1278V35.8667H162.246V84.1278H172.878ZM229.849 84.1278V35.8667H219.354V65.585L196.786 35.8667H187.012V84.1278H197.472V53.4467L220.796 84.1278H229.849ZM288.554 84.1278L267.873 35.5228H258.099L237.461 84.1278H248.265L252.684 73.3047H273.056L277.458 84.1278H288.554ZM269.289 63.9259H256.451L262.853 48.2801L269.289 63.9259ZM339.071 84.1278V35.8667H328.577V65.585L305.999 35.8667H296.234V84.1278H306.686V53.4467L330.018 84.1278H339.071ZM393.777 76.3393L387.041 69.5136C383.256 72.9523 379.884 75.1616 374.375 75.1616C366.119 75.1616 360.404 68.2843 360.404 59.9972V59.8597C360.404 51.5898 366.257 44.8329 374.375 44.8329C379.189 44.8329 382.956 46.8961 386.697 50.2745L393.416 42.486C388.946 38.076 383.514 35.0414 374.426 35.0414C359.632 35.0414 349.309 46.2771 349.309 59.9715V60.109C349.309 73.9667 359.838 84.9273 374.014 84.9273C383.291 84.9531 388.791 81.6434 393.742 76.3393H393.777ZM439 84.1278V74.6716H412.81V64.519H435.525V55.0628H412.81V45.3143H438.622V35.8581H402.281V84.1192L439 84.1278Z" fill="#F0B90B"/></svg>
-          </span>
-          <span class="card__name">Binance 币安</span>
-          <span class="card__desc">全球交易量最大的交易所，现货 / 合约 / 理财一站式</span>
-          <span class="card__go">注册领取 <span class="arr">→</span></span>
-        </a>
-      </li>
       <li>
         <a class="card" style="--brand:#F7A600" aria-label="Bybit" href="https://partner.bybit.com/b/91415" target="_blank" rel="sponsored noopener">
           <span class="card__top">
@@ -493,6 +522,16 @@
           </span>
           <span class="card__name">Bybit</span>
           <span class="card__desc">主流衍生品交易所，合约体验与深度出色</span>
+          <span class="card__go">注册领取 <span class="arr">→</span></span>
+        </a>
+      </li>
+      <li>
+        <a class="card" style="--brand:#F0B90B" aria-label="Binance 币安" href="https://www.bsmkweb.cc/referral/earn-together/refer2earn-usdc/claim?hl=zh-CN&ref=GRO_28502_ZO0GP" target="_blank" rel="sponsored noopener">
+          <span class="card__top">
+            <svg class="card__wordmark" viewBox="2 16 437 88" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21.8484 59.9972L11.9199 69.9349L2 59.9972L11.9199 50.0596L21.8484 59.9972ZM45.9188 35.8667L62.9183 52.9051L72.8382 42.9674L45.9188 16L18.9995 42.9674L28.9194 52.9051L45.9188 35.8667ZM79.9263 50.0596L70.0064 59.9972L79.9263 69.9349L89.8376 59.9972L79.9263 50.0596ZM45.9188 84.1278L28.9194 67.098L18.9995 77.0271L45.9188 103.994L72.8382 77.0271L62.9183 67.098L45.9188 84.1278ZM45.9188 69.9349L55.8387 59.9972L45.9188 50.0596L35.9989 59.9972L45.9188 69.9349ZM150.61 70.8891V70.7516C150.61 64.2697 147.178 61.0288 141.591 58.8969C145.024 56.9627 147.924 53.9281 147.924 48.4864V48.3489C147.924 40.7667 141.866 35.8667 132.023 35.8667H109.677V84.1278H132.589C143.462 84.1278 150.627 79.7178 150.627 70.8891H150.61ZM137.395 50.2573C137.395 53.8421 134.434 55.3637 129.758 55.3637H120.001V45.1768H130.461C134.932 45.1768 137.412 46.9648 137.412 50.137L137.395 50.2573ZM140.081 69.5652C140.081 73.15 137.258 74.8005 132.572 74.8005H120.001V64.201H132.246C137.687 64.201 140.098 66.204 140.098 69.4449L140.081 69.5652ZM172.878 84.1278V35.8667H162.246V84.1278H172.878ZM229.849 84.1278V35.8667H219.354V65.585L196.786 35.8667H187.012V84.1278H197.472V53.4467L220.796 84.1278H229.849ZM288.554 84.1278L267.873 35.5228H258.099L237.461 84.1278H248.265L252.684 73.3047H273.056L277.458 84.1278H288.554ZM269.289 63.9259H256.451L262.853 48.2801L269.289 63.9259ZM339.071 84.1278V35.8667H328.577V65.585L305.999 35.8667H296.234V84.1278H306.686V53.4467L330.018 84.1278H339.071ZM393.777 76.3393L387.041 69.5136C383.256 72.9523 379.884 75.1616 374.375 75.1616C366.119 75.1616 360.404 68.2843 360.404 59.9972V59.8597C360.404 51.5898 366.257 44.8329 374.375 44.8329C379.189 44.8329 382.956 46.8961 386.697 50.2745L393.416 42.486C388.946 38.076 383.514 35.0414 374.426 35.0414C359.632 35.0414 349.309 46.2771 349.309 59.9715V60.109C349.309 73.9667 359.838 84.9273 374.014 84.9273C383.291 84.9531 388.791 81.6434 393.742 76.3393H393.777ZM439 84.1278V74.6716H412.81V64.519H435.525V55.0628H412.81V45.3143H438.622V35.8581H402.281V84.1192L439 84.1278Z" fill="#F0B90B"/></svg>
+          </span>
+          <span class="card__name">Binance 币安</span>
+          <span class="card__desc">全球交易量最大的交易所，现货 / 合约 / 理财一站式</span>
           <span class="card__go">注册领取 <span class="arr">→</span></span>
         </a>
       </li>
@@ -524,8 +563,9 @@
     <div class="section__head reveal">
       <div class="section__head-left">
         <span class="section__num">02</span>
-        <h2 class="section__title">美国券商</h2>
+        <h2 class="section__title">美股券商</h2>
       </div>
+      <span class="section__line" aria-hidden="true"></span>
       <span class="section__tag">Brokerage</span>
     </div>
     <ul class="cards reveal" data-delay="1">
@@ -535,7 +575,7 @@
             <span class="card__logo" aria-hidden="true"><img src="../images/schwab.svg" alt=""></span>
           </span>
           <span class="card__name">Charles Schwab 嘉信理财</span>
-          <span class="card__desc">证券 + 支票账户，Debit 卡全球 ATM 手续费全返</span>
+          <span class="card__desc">美国本土老牌券商，美股零佣金，证券与支票账户一站式</span>
           <span class="card__go">开户领取 <span class="arr">→</span></span>
         </a>
       </li>
@@ -549,6 +589,7 @@
         <span class="section__num">03</span>
         <h2 class="section__title">美国信用卡</h2>
       </div>
+      <span class="section__line" aria-hidden="true"></span>
       <span class="section__tag">Credit Cards</span>
     </div>
     <ul class="cards reveal" data-delay="1">
@@ -561,6 +602,18 @@
           </span>
           <span class="card__name">Hilton Honors Amex</span>
           <span class="card__desc">美国运通希尔顿联名卡，无年费，住希尔顿系酒店高倍积分</span>
+          <span class="card__go">申请开卡 <span class="arr">→</span></span>
+        </a>
+      </li>
+      <li>
+        <a class="card" style="--brand:#2E77BC" href="https://americanexpress.com/en-us/referral/marriott-bonvoy?ref=XIAOYT52X9&XL=MIMNS" target="_blank" rel="sponsored noopener">
+          <span class="card__top">
+            <span class="card__logo" aria-hidden="true">
+              <img src="../images/amex.svg" alt="">
+            </span>
+          </span>
+          <span class="card__name">Marriott Bonvoy Brilliant Amex</span>
+          <span class="card__desc">美国运通万豪高端联名卡，赠白金会籍与年度免房券</span>
           <span class="card__go">申请开卡 <span class="arr">→</span></span>
         </a>
       </li>
@@ -587,6 +640,7 @@
         <span class="section__num">04</span>
         <h2 class="section__title">跨境金融</h2>
       </div>
+      <span class="section__line" aria-hidden="true"></span>
       <span class="section__tag">Fintech</span>
     </div>
     <ul class="cards reveal" data-delay="1">
