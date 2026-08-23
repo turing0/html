@@ -847,7 +847,7 @@
 
       function build() {
         var containerW = Math.min(h1.clientWidth || 900, 900);
-        cell = containerW < 520 ? 7 : 9;
+        cell = containerW < 520 ? 4 : 9;
         cols = Math.max(40, Math.floor(containerW / cell));
 
         // Sample the wordmark on an offscreen canvas at 3x supersampling:
@@ -856,15 +856,15 @@
         // survive this; single-pixel threshold sampling loses them.
         // Bounds come from the inked pixels, not font metrics (unreliable on iOS).
         var pad = 3;
-        // Small screens: coarse grid + thin antialiased strokes need forgiving
-        // sampling (3x supersampling, bolder weight, low thresholds) or the
-        // letterform falls apart. Desktop uses SS=1 with the exact original
-        // rule (weight 300, 1px per cell, alpha>140) so the look is unchanged.
+        // Desktop uses SS=1 with the exact original rule (weight 300, 1px per
+        // cell, alpha>140). Small screens use a fine 4px grid so the letterform
+        // has enough resolution, sampled at 3x with the equivalent >~55%
+        // coverage rule — same silhouette as desktop, robust to iOS AA.
         var fine = containerW < 520;
         var SS = fine ? 3 : 1;
-        var weight = fine ? '500' : '300';
-        var alphaThresh = fine ? 100 : 140;
-        var minCount = fine ? 2 : 1;
+        var weight = '300';
+        var alphaThresh = fine ? 110 : 140;
+        var minCount = fine ? 5 : 1;
         var mc = document.createElement('canvas');
         var mctx = mc.getContext('2d');
         mctx.font = weight + ' 100px "Space Grotesk", sans-serif';
